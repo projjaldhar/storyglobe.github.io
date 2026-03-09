@@ -1,0 +1,82 @@
+'use strict';
+
+/* ============================================================
+   NAV — add scrolled class after 60px
+   ============================================================ */
+const nav = document.getElementById('nav');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ============================================================
+   FADE-IN — Intersection Observer
+   ============================================================ */
+const fadeEls = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); // fire once
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+fadeEls.forEach(el => observer.observe(el));
+
+/* ============================================================
+   SMOOTH SCROLL — internal anchor links
+   ============================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    const offset = 72; // nav height
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+/* ============================================================
+   STAT COUNTER — animate numbers on first visibility
+   ============================================================ */
+function animateCounter(el, end, suffix) {
+  const duration = 1200;
+  const startTime = performance.now();
+  const endVal = parseFloat(end);
+
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // ease-out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * endVal * 10) / 10;
+    el.textContent = (Number.isInteger(current) ? current : current.toFixed(0)) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const statCards = document.querySelectorAll('.stat-card');
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const numEl = entry.target.querySelector('.stat-number');
+    if (!numEl || numEl.dataset.animated) return;
+    numEl.dataset.animated = 'true';
+
+    const raw = numEl.textContent.trim();           // e.g. "10+", "90%", "3"
+    const suffix = raw.replace(/[0-9.]/g, '');      // "+", "%", ""
+    const num = raw.replace(/[^0-9.]/g, '');        // "10", "90", "3"
+    numEl.textContent = '0' + suffix;
+    animateCounter(numEl, num, suffix);
+    statObserver.unobserve(entry.target);
+  });
+}, { threshold: 0.4 });
+
+statCards.forEach(card => statObserver.observe(card));
