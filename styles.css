@@ -437,6 +437,14 @@ img { max-width: 100%; display: block; }
   transform: translateY(-5px);
 }
 .project-card:hover::after { opacity: 1; }
+
+/* Make <a> cards behave like block elements */
+a.project-card {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
 .project-number {
   font-size: 0.68rem;
   color: var(--accent);
@@ -467,6 +475,21 @@ img { max-width: 100%; display: block; }
   flex-wrap: wrap;
   gap: 7px;
   margin-top: 4px;
+}
+.project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-3);
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+  transition: color var(--t) var(--ease), gap var(--t) var(--ease);
+}
+a.project-card:hover .project-cta {
+  color: var(--accent);
+  gap: 10px;
 }
 .tag {
   font-size: 0.68rem;
