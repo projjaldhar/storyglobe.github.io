@@ -4,14 +4,6 @@ import { OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three";
 import type { Country } from "@/data/stories";
 
-interface GlobeMarkerProps {
-  lat: number;
-  lng: number;
-  emoji: string;
-  name: string;
-  onClick: () => void;
-}
-
 function latLngToVector3(lat: number, lng: number, radius: number): THREE.Vector3 {
   const phi = (90 - lat) * (Math.PI / 180);
   const theta = (lng + 180) * (Math.PI / 180);
@@ -22,52 +14,38 @@ function latLngToVector3(lat: number, lng: number, radius: number): THREE.Vector
   );
 }
 
-function GlobeMarker({ lat, lng, emoji, name, onClick }: GlobeMarkerProps) {
-  const position = useMemo(() => latLngToVector3(lat, lng, 2.06), [lat, lng]);
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <Html position={position} center distanceFactor={8}>
-      <button
-        onClick={onClick}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className="flex flex-col items-center cursor-pointer group"
-        title={name}
-        style={{ transform: hovered ? "scale(1.3)" : "scale(1)", transition: "transform 0.2s ease" }}>
-        
-        <span className="relative">
-          <span
-            className="absolute inset-0 rounded-full pointer-events-none"
-            style={{
-              boxShadow: hovered ?
-              "0 0 20px 10px rgba(59, 130, 246, 0.5), 0 0 50px 20px rgba(59, 130, 246, 0.2)" :
-              "0 0 8px 3px rgba(59, 130, 246, 0.15)",
-              transform: "scale(1.8)",
-              transition: "box-shadow 0.3s ease"
-            }} />
-          
-          <span className="text-xl md:text-2xl drop-shadow-lg relative z-10 block">{emoji}</span>
-        </span>
-        <span
-          className="text-[9px] font-display font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap mt-0.5"
-          style={{
-            opacity: hovered ? 1 : 0,
-            background: hovered ? "rgba(255,255,255,0.9)" : "transparent",
-            color: "#111",
-            transition: "opacity 0.2s ease"
-          }}>
-          
-          {name}
-        </span>
-      </button>
-    </Html>);
-
+function vector3ToLatLng(point: THREE.Vector3): { lat: number; lng: number } {
+  const n = point.clone().normalize();
+  const lat = 90 - Math.acos(Math.max(-1, Math.min(1, n.y))) * (180 / Math.PI);
+  let lng = Math.atan2(n.z, -n.x) * (180 / Math.PI) - 180;
+  if (lng < -180) lng += 360; // atan2 returns (-180,180]; shift eastern longitudes back into range
+  return { lat, lng };
 }
 
-function EarthGlobe() {
+function nearestCountry(lat: number, lng: number, countries: Country[], threshold = 28): Country | null {
+  let best: Country | null = null;
+  let bestDist = threshold;
+  for (const c of countries) {
+    const dlat = lat - c.lat;
+    const dlng = lng - c.lng;
+    const d = Math.sqrt(dlat * dlat + dlng * dlng);
+    if (d < bestDist) {
+      bestDist = d;
+      best = c;
+    }
+  }
+  return best;
+}
+
+interface EarthGlobeProps {
+  countries: Country[];
+  onCountryClick: (countryId: string) => void;
+}
+
+function EarthGlobe({ countries, onCountryClick }: EarthGlobeProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   const texture = useLoader(THREE.TextureLoader, "/images/earth-texture.jpg");
+  const [hoveredCountry, setHoveredCountry] = useState<Country | null>(null);
 
   useMemo(() => {
     texture.anisotropy = 16;
@@ -79,11 +57,65 @@ function EarthGlobe() {
   });
 
   return (
-    <mesh ref={meshRef}>
+    <mesh
+      ref={meshRef}
+      onPointerMove={(e) => {
+        e.stopPropagation();
+        if (!meshRef.current) return;
+        const localPoint = meshRef.current.worldToLocal(e.point.clone());
+        const { lat, lng } = vector3ToLatLng(localPoint);
+        const country = nearestCountry(lat, lng, countries);
+        setHoveredCountry(country);
+        document.body.style.cursor = country ? "pointer" : "default";
+      }}
+      onPointerLeave={() => {
+        setHoveredCountry(null);
+        document.body.style.cursor = "default";
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (hoveredCountry) onCountryClick(hoveredCountry.id);
+      }}
+    >
       <sphereGeometry args={[2, 128, 128]} />
       <meshPhongMaterial map={texture} shininess={15} specular={new THREE.Color(0x111122)} />
-    </mesh>);
 
+      {hoveredCountry && (
+        <Html
+          position={latLngToVector3(hoveredCountry.lat, hoveredCountry.lng, 2.25)}
+          center
+          distanceFactor={8}
+        >
+          <div style={{ pointerEvents: "none", display: "flex", flexDirection: "column", alignItems: "center", gap: 0 }}>
+            <div
+              style={{
+                background: "rgba(255,255,255,0.95)",
+                backdropFilter: "blur(10px)",
+                border: "2px solid rgba(59,130,246,0.45)",
+                borderRadius: "10px",
+                padding: "5px 14px",
+                fontSize: "13px",
+                fontWeight: 700,
+                color: "#1e3a5f",
+                whiteSpace: "nowrap",
+                boxShadow: "0 4px 20px rgba(59,130,246,0.25)",
+                fontFamily: "'Fredoka', sans-serif",
+                letterSpacing: "0.01em",
+              }}
+            >
+              {hoveredCountry.emoji} {hoveredCountry.name}
+            </div>
+            <div style={{
+              width: 0, height: 0,
+              borderLeft: "6px solid transparent",
+              borderRight: "6px solid transparent",
+              borderTop: "7px solid rgba(255,255,255,0.95)",
+            }} />
+          </div>
+        </Html>
+      )}
+    </mesh>
+  );
 }
 
 function Atmosphere() {
@@ -91,32 +123,8 @@ function Atmosphere() {
     <mesh>
       <sphereGeometry args={[2.12, 64, 64]} />
       <meshBasicMaterial color="#93c5fd" transparent opacity={0.12} side={THREE.BackSide} depthWrite={false} />
-    </mesh>);
-
-}
-
-function Stars() {
-  const positions = useMemo(() => {
-    const pos = new Float32Array(1200 * 3);
-    for (let i = 0; i < 1200; i++) {
-      const r = 18 + Math.random() * 30;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      pos[i * 3 + 2] = r * Math.cos(phi);
-    }
-    return pos;
-  }, []);
-
-  return (
-    <points>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-      </bufferGeometry>
-      <pointsMaterial color="#ffffff" size={0.04} sizeAttenuation transparent opacity={0.7} />
-    </points>);
-
+    </mesh>
+  );
 }
 
 function ResponsiveCamera() {
@@ -142,8 +150,9 @@ export default function Globe3D({ countries, onCountryClick }: Globe3DProps) {
       <Canvas
         camera={{ position: [0, 0, 5.2], fov: 45 }}
         gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
-        dpr={[1, 1.5]} className="border-muted">
-        
+        dpr={[1, 1.5]}
+        className="border-muted"
+      >
         <color attach="background" args={["#dbeafe"]} />
         <ResponsiveCamera />
 
@@ -152,26 +161,17 @@ export default function Globe3D({ countries, onCountryClick }: Globe3DProps) {
         <directionalLight position={[-5, 2, -4]} intensity={0.6} color="#c8e8ff" />
 
         <Atmosphere />
-        <EarthGlobe />
-        {countries.map((country) =>
-        <GlobeMarker
-          key={country.id}
-          lat={country.lat}
-          lng={country.lng}
-          emoji={country.emoji}
-          name={country.name}
-          onClick={() => onCountryClick(country.id)} />
+        <EarthGlobe countries={countries} onCountryClick={onCountryClick} />
 
-        )}
         <OrbitControls
           enableZoom={false}
           enablePan={false}
           autoRotate
           autoRotateSpeed={0.25}
           minPolarAngle={Math.PI / 4}
-          maxPolarAngle={Math.PI - Math.PI / 4} />
-        
+          maxPolarAngle={Math.PI - Math.PI / 4}
+        />
       </Canvas>
-    </div>);
-
+    </div>
+  );
 }
