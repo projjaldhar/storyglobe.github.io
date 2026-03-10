@@ -26,7 +26,7 @@ const Index = () => {
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden relative bg-[#060a14]">
+    <div className="h-screen w-screen overflow-hidden relative bg-[#dbeafe]">
       {/* Fullscreen Globe */}
       <Suspense
         fallback={
@@ -50,10 +50,10 @@ const Index = () => {
           className="px-6 pt-6 pb-4 flex items-center justify-between"
         >
           <div>
-            <h1 className="font-display text-xl md:text-2xl font-bold text-primary-foreground/90 drop-shadow-lg">
+            <h1 className="font-display text-xl md:text-2xl font-bold text-slate-800 drop-shadow-sm">
               Story Globe
             </h1>
-            <p className="text-xs md:text-sm text-primary-foreground/50 mt-0.5 font-body">
+            <p className="text-xs md:text-sm text-slate-500 mt-0.5 font-body">
               Tap a country to explore
             </p>
           </div>
@@ -61,7 +61,7 @@ const Index = () => {
             <div className="pointer-events-auto">
               <button
                 onClick={() => setSelectedCountry(null)}
-                className="flex items-center gap-1.5 bg-card/10 backdrop-blur-md border border-primary-foreground/10 rounded-full px-3 py-1.5 text-xs font-display font-semibold text-primary-foreground/70 hover:bg-card/20 transition-colors"
+                className="flex items-center gap-1.5 bg-white/60 backdrop-blur-md border border-slate-200 rounded-full px-3 py-1.5 text-xs font-display font-semibold text-slate-600 hover:bg-white/80 transition-colors"
               >
                 🏅 {badges.unlockedCountries.length}/{countries.length}
               </button>
@@ -79,7 +79,7 @@ const Index = () => {
             exit={{ opacity: 0 }}
             className="absolute bottom-6 left-0 right-0 text-center pointer-events-none"
           >
-            <p className="text-xs text-primary-foreground/30 font-body">
+            <p className="text-xs text-slate-400 font-body">
               🖱️ Drag to spin · Click a flag to discover stories
             </p>
           </motion.div>

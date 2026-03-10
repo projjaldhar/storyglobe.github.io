@@ -41,8 +41,8 @@ function GlobeMarker({ lat, lng, emoji, name, onClick }: GlobeMarkerProps) {
             className="absolute inset-0 rounded-full pointer-events-none"
             style={{
               boxShadow: hovered ?
-              "0 0 20px 10px rgba(100, 200, 255, 0.6), 0 0 50px 20px rgba(100, 200, 255, 0.2)" :
-              "0 0 8px 3px rgba(100, 200, 255, 0.1)",
+              "0 0 20px 10px rgba(59, 130, 246, 0.5), 0 0 50px 20px rgba(59, 130, 246, 0.2)" :
+              "0 0 8px 3px rgba(59, 130, 246, 0.15)",
               transform: "scale(1.8)",
               transition: "box-shadow 0.3s ease"
             }} />
@@ -90,7 +90,7 @@ function Atmosphere() {
   return (
     <mesh>
       <sphereGeometry args={[2.12, 64, 64]} />
-      <meshBasicMaterial color="#4488cc" transparent opacity={0.045} side={THREE.BackSide} depthWrite={false} />
+      <meshBasicMaterial color="#93c5fd" transparent opacity={0.12} side={THREE.BackSide} depthWrite={false} />
     </mesh>);
 
 }
@@ -144,14 +144,13 @@ export default function Globe3D({ countries, onCountryClick }: Globe3DProps) {
         gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
         dpr={[1, 1.5]} className="border-muted">
         
-        <color attach="background" args={["#060a14"]} />
+        <color attach="background" args={["#dbeafe"]} />
         <ResponsiveCamera />
 
-        <ambientLight intensity={0.3} color="#c8d8ff" />
-        <directionalLight position={[8, 4, 6]} intensity={1.6} color="#fff5e0" />
-        <pointLight position={[-6, -3, -6]} intensity={0.1} color="#4488ff" />
+        <ambientLight intensity={1.8} color="#ffffff" />
+        <directionalLight position={[8, 4, 6]} intensity={2.0} color="#fff8f0" />
+        <directionalLight position={[-5, 2, -4]} intensity={0.6} color="#c8e8ff" />
 
-        <Stars />
         <Atmosphere />
         <EarthGlobe />
         {countries.map((country) =>
