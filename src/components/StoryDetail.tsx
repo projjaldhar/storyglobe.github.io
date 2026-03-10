@@ -1,6 +1,9 @@
-import { motion } from "framer-motion";
-import { ArrowLeft, BookOpen, CheckCircle, Clock } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, BookOpen, CheckCircle, ChevronDown, Clock } from "lucide-react";
+import { useState } from "react";
 import type { Story } from "@/data/stories";
+import { tales } from "@/data/tales";
+import type { Tale } from "@/data/tales";
 
 interface StoryDetailProps {
   story: Story;
@@ -15,6 +18,13 @@ function estimateReadTime(text: string): number {
 
 export default function StoryDetail({ story, onBack, isRead, onMarkRead }: StoryDetailProps) {
   const readTime = estimateReadTime(story.summary);
+  const [expandedTaleId, setExpandedTaleId] = useState<string | null>(null);
+
+  const storyTales = tales.filter((t) => t.storyId === story.id);
+
+  function handleTaleClick(taleId: string) {
+    setExpandedTaleId((prev) => (prev === taleId ? null : taleId));
+  }
 
   return (
     <motion.div
@@ -86,6 +96,74 @@ export default function StoryDetail({ story, onBack, isRead, onMarkRead }: Story
           <p className="font-serif text-foreground italic text-base leading-relaxed">
             "{story.moral}"
           </p>
+        </motion.div>
+      )}
+
+      {/* Stories in this Collection */}
+      {storyTales.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mt-10"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <BookOpen className="w-4 h-4 text-primary" />
+            <h2 className="font-display font-semibold text-sm text-primary uppercase tracking-wider">
+              Stories in this Collection
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            {storyTales.map((tale: Tale) => {
+              const isOpen = expandedTaleId === tale.id;
+              return (
+                <div
+                  key={tale.id}
+                  className="bg-primary/5 border border-primary/10 rounded-2xl overflow-hidden"
+                >
+                  <button
+                    onClick={() => handleTaleClick(tale.id)}
+                    className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left hover:bg-primary/10 transition-colors"
+                    aria-expanded={isOpen}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="text-2xl shrink-0">{tale.emoji}</span>
+                      <span className="font-serif font-semibold text-foreground text-base leading-snug truncate">
+                        {tale.title}
+                      </span>
+                    </div>
+                    <motion.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="shrink-0 text-primary"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </motion.span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5 pt-1 border-t border-primary/10">
+                          <p className="font-serif text-foreground/85 leading-[1.8] text-base">
+                            {tale.content}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
         </motion.div>
       )}
 
