@@ -51,7 +51,7 @@ const Index = () => {
         >
           <div>
             <h1 className="font-display text-xl md:text-2xl font-bold text-primary-foreground/90 drop-shadow-lg">
-              Stories Around the World
+              Story Globe
             </h1>
             <p className="text-xs md:text-sm text-primary-foreground/50 mt-0.5 font-body">
               Tap a country to explore
