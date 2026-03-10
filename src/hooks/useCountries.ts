@@ -17,6 +17,11 @@ import storyMomotaro from "@/assets/story-momotaro.png";
 import storyAnansi from "@/assets/story-anansi.png";
 import storyLionMouse from "@/assets/story-lion-mouse.png";
 
+// Frontend overrides — take precedence over whatever is stored in the DB
+const emojiOverrides: Record<string, string> = {
+  "west-africa": "🇬🇭",
+};
+
 const countryImages: Record<string, string> = {
   india: indiaImg,
   germany: germanyImg,
@@ -77,7 +82,7 @@ async function fetchCountries(): Promise<Country[]> {
     return {
       id: c.id,
       name: c.name,
-      emoji: c.emoji,
+      emoji: emojiOverrides[c.id] ?? c.emoji,
       color: c.color,
       image: countryImages[c.image_key] ?? "",
       description: c.description,
