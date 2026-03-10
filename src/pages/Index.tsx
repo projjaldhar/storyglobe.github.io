@@ -20,9 +20,6 @@ const Index = () => {
     const country = countries.find((c) => c.id === countryId);
     if (country) {
       setSelectedCountry(country);
-      if (!badges.isCountryUnlocked(countryId)) {
-        badges.unlockCountry(countryId);
-      }
     }
   };
 
@@ -58,16 +55,14 @@ const Index = () => {
               Tap a country to explore
             </p>
           </div>
-          {badges.totalCountries > 0 && (
-            <div className="pointer-events-auto">
-              <button
-                onClick={() => setShowBadges(true)}
-                className="flex items-center gap-1.5 bg-white/60 backdrop-blur-md border border-slate-200 rounded-full px-3 py-1.5 text-xs font-display font-semibold text-slate-600 hover:bg-white/80 transition-colors"
-              >
-                🏅 {badges.unlockedCountries.length}/{countries.length}
-              </button>
-            </div>
-          )}
+          <div className="pointer-events-auto">
+            <button
+              onClick={() => setShowBadges(true)}
+              className="flex items-center gap-1.5 bg-white/60 backdrop-blur-md border border-slate-200 rounded-full px-3 py-1.5 text-xs font-display font-semibold text-slate-600 hover:bg-white/80 transition-colors"
+            >
+              🏅 {badges.unlockedCountries.length}/{countries.length}
+            </button>
+          </div>
         </motion.div>
       </div>
 
@@ -106,7 +101,7 @@ const Index = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-3 px-1">
-                <span className="font-display text-base font-bold text-slate-800">Countries Explored</span>
+                <span className="font-display text-base font-bold text-slate-800">My Country Badges</span>
                 <button
                   onClick={() => setShowBadges(false)}
                   className="text-slate-400 hover:text-slate-600 text-xl leading-none"
@@ -116,6 +111,7 @@ const Index = () => {
               </div>
               <BadgeCollection
                 unlockedCountries={badges.unlockedCountries}
+                talesCompleted={badges.talesCompleted}
                 totalStories={badges.totalStories}
                 countries={countries}
               />

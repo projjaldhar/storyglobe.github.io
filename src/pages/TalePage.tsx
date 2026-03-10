@@ -36,6 +36,7 @@ export default function TalePage() {
   const [quizStates, setQuizStates] = useState<QuizState[]>(questions.map(() => "unanswered"));
   const [submitted, setSubmitted] = useState(false);
   const [completed, setCompleted] = useState(badges.isTaleCompleted(taleId ?? ""));
+  const [countryUnlocked, setCountryUnlocked] = useState(false);
 
   const theme = colorThemes[country?.color ?? ""] ?? defaultTheme;
   const isLastPage = pageIndex === pages.length - 1;
@@ -68,6 +69,24 @@ export default function TalePage() {
     if (states.every((s) => s === "correct")) {
       badges.completeTale(taleId!);
       setCompleted(true);
+
+      // Check if all country tales are now completed
+      if (countryId && !badges.isCountryUnlocked(countryId)) {
+        const countryTaleIds = tales
+          .filter((t) => {
+            const countryStoryIds = country?.stories.map((s) => s.id) ?? [];
+            return countryStoryIds.includes(t.storyId) && t.pages && t.pages.length > 0 && t.questions && t.questions.length > 0;
+          })
+          .map((t) => t.id);
+        const alreadyCompleted = badges.talesCompleted;
+        const allDone = countryTaleIds.every(
+          (id) => id === taleId || alreadyCompleted.includes(id)
+        );
+        if (allDone) {
+          badges.unlockCountry(countryId);
+          setCountryUnlocked(true);
+        }
+      }
     }
   };
 
@@ -278,7 +297,20 @@ export default function TalePage() {
           </motion.div>
           <h2 className="font-display text-3xl font-bold text-slate-800 mb-2">Amazing!</h2>
           <p className="font-body text-slate-600 text-lg mb-1">You completed</p>
-          <p className="font-display text-xl font-bold text-slate-800 mb-8">"{tale.title}"</p>
+          <p className="font-display text-xl font-bold text-slate-800 mb-4">"{tale.title}"</p>
+
+          {countryUnlocked && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mb-6 bg-yellow-50 border border-yellow-200 rounded-2xl px-6 py-4 text-center"
+            >
+              <p className="text-2xl mb-1">{country?.emoji} 🏅</p>
+              <p className="font-display font-bold text-yellow-800 text-base">Country Badge Unlocked!</p>
+              <p className="font-body text-yellow-700 text-sm mt-0.5">You've mastered all tales from {country?.name}!</p>
+            </motion.div>
+          )}
 
           <div className="flex gap-3 flex-wrap justify-center">
             <button

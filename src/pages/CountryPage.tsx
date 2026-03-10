@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useCountries } from "@/hooks/useCountries";
 import StoryDetail from "@/components/StoryDetail";
 import AuthorDetail from "@/components/AuthorDetail";
-import BadgeUnlockModal from "@/components/BadgeUnlockModal";
 import StoryCard from "@/components/StoryCard";
 import AuthorCard from "@/components/AuthorCard";
 import { useBadges } from "@/hooks/useBadges";
@@ -17,7 +15,6 @@ export default function CountryPage() {
   const [searchParams] = useSearchParams();
   const badges = useBadges();
   const { data: countries = [] } = useCountries();
-  const [showBadgeModal, setShowBadgeModal] = useState(false);
 
   const country = countries.find((c) => c.id === countryId);
 
@@ -27,13 +24,6 @@ export default function CountryPage() {
 
   const selectedStory = storyParam ? country?.stories.find((s) => s.id === storyParam) ?? null : null;
   const selectedAuthor = authorParam ? country?.authors.find((a) => a.id === authorParam) ?? null : null;
-
-  useEffect(() => {
-    if (country && !badges.isCountryUnlocked(country.id)) {
-      badges.unlockCountry(country.id);
-      setTimeout(() => setShowBadgeModal(true), 800);
-    }
-  }, [country?.id]);
 
   if (!country) {
     return (
@@ -80,13 +70,6 @@ export default function CountryPage() {
   // Country overview
   return (
     <div className="min-h-screen bg-background">
-      <BadgeUnlockModal
-        countryName={country.name}
-        countryEmoji={country.emoji}
-        isOpen={showBadgeModal}
-        onClose={() => setShowBadgeModal(false)}
-      />
-
       <div className="max-w-2xl mx-auto px-4 py-8">
         <button
           onClick={() => navigate("/")}
