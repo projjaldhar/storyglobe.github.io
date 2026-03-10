@@ -59,7 +59,7 @@ insert into public.countries (id, name, emoji, color, image_key, description, la
   ('germany',    'Germany',     '🇩🇪', 'story-forest',  'germany',    'Deep enchanted forests, fairy tale castles, and magical stories that have captivated children for centuries.',                                        51.1657,  10.4515, 2),
   ('uk-ireland', 'UK & Ireland','🇬🇧', 'story-sky',     'uk-ireland', 'Rolling green hills, ancient castles, and a rich tradition of fairy tales, legends, and beloved children''s literature.',                            54.3781,  -3.4360, 3),
   ('japan',      'Japan',       '🇯🇵', 'story-lavender','japan',      'A land of cherry blossoms, ancient temples, and beautiful folktales about honor, nature, and magical creatures.',                                     36.2048, 138.2529, 4),
-  ('west-africa','West Africa', '🌍', 'story-sunset',  'west-africa','A vibrant land of rich oral traditions, where griots (storytellers) have been sharing wisdom through tales for centuries.',                            9.0820,  -8.7832, 5)
+  ('west-africa','West Africa', '🇬🇭', 'story-sunset',  'west-africa','A vibrant land of rich oral traditions, where griots (storytellers) have been sharing wisdom through tales for centuries.',                            9.0820,  -8.7832, 5)
 on conflict (id) do nothing;
 
 insert into public.stories (id, country_id, title, summary, origin, emoji, moral, illustration_key, sort_order) values

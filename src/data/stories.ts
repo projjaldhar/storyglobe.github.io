@@ -266,7 +266,7 @@ export const countries: Country[] = [
   {
     id: "west-africa",
     name: "West Africa",
-    emoji: "🌍",
+    emoji: "🇬🇭",
     color: "story-sunset",
     image: africaImg,
     description: "A vibrant land of rich oral traditions, where griots (storytellers) have been sharing wisdom through tales for centuries.",

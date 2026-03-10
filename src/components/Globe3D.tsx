@@ -1,5 +1,5 @@
 import { useRef, useMemo, useState } from "react";
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
+import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import { OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three";
 import type { Country } from "@/data/stories";
@@ -14,149 +14,83 @@ function latLngToVector3(lat: number, lng: number, radius: number): THREE.Vector
   );
 }
 
-function vector3ToLatLng(point: THREE.Vector3): { lat: number; lng: number } {
-  const n = point.clone().normalize();
-  const lat = 90 - Math.acos(Math.max(-1, Math.min(1, n.y))) * (180 / Math.PI);
-  let lng = Math.atan2(n.z, -n.x) * (180 / Math.PI) - 180;
-  if (lng < -180) lng += 360;
-  return { lat, lng };
+interface GlobeMarkerProps {
+  lat: number;
+  lng: number;
+  emoji: string;
+  name: string;
+  onClick: () => void;
+  occludeRef: React.RefObject<THREE.Mesh>;
 }
 
-function nearestCountry(lat: number, lng: number, countries: Country[], threshold = 28): Country | null {
-  let best: Country | null = null;
-  let bestDist = threshold;
-  for (const c of countries) {
-    const dlat = lat - c.lat;
-    const dlng = lng - c.lng;
-    const d = Math.sqrt(dlat * dlat + dlng * dlng);
-    if (d < bestDist) {
-      bestDist = d;
-      best = c;
-    }
-  }
-  return best;
-}
-
-// Tooltip rendered outside the rotating mesh so it never flickers on the back-face.
-// useFrame tracks the country's world position each frame.
-function CountryTooltip({
-  country,
-  meshRef,
-}: {
-  country: Country;
-  meshRef: React.RefObject<THREE.Mesh>;
-}) {
-  const groupRef = useRef<THREE.Group>(null);
-  const { camera } = useThree();
-  const localPos = useMemo(
-    () => latLngToVector3(country.lat, country.lng, 2.3),
-    [country]
-  );
-
-  useFrame(() => {
-    if (!meshRef.current || !groupRef.current) return;
-    const worldPos = localPos.clone().applyMatrix4(meshRef.current.matrixWorld);
-    groupRef.current.position.copy(worldPos);
-
-    // Hide when the country is on the back hemisphere (facing away from camera)
-    const toCamera = camera.position.clone().normalize();
-    const toCountry = worldPos.clone().normalize();
-    groupRef.current.visible = toCamera.dot(toCountry) > 0.15;
-  });
+function GlobeMarker({ lat, lng, emoji, name, onClick, occludeRef }: GlobeMarkerProps) {
+  const position = useMemo(() => latLngToVector3(lat, lng, 2.08), [lat, lng]);
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <group ref={groupRef}>
-      <Html center distanceFactor={8}>
-        <div
+    <Html position={position} center distanceFactor={8} occlude={[occludeRef]}>
+      <button
+        onClick={onClick}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          background: "none",
+          border: "none",
+          padding: 0,
+          cursor: "pointer",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "3px",
+          transform: hovered ? "scale(1.4)" : "scale(1)",
+          transition: "transform 0.2s ease",
+        }}
+      >
+        <span
           style={{
-            pointerEvents: "none",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            fontSize: "16px",
+            lineHeight: 1,
+            filter: hovered
+              ? "drop-shadow(0 0 6px rgba(59,130,246,0.7))"
+              : "drop-shadow(0 2px 3px rgba(0,0,0,0.25))",
+            transition: "filter 0.2s ease",
           }}
         >
-          <div
-            style={{
-              background: "rgba(255,255,255,0.95)",
-              backdropFilter: "blur(10px)",
-              border: "2px solid rgba(59,130,246,0.45)",
-              borderRadius: "10px",
-              padding: "5px 14px",
-              fontSize: "13px",
-              fontWeight: 700,
-              color: "#1e3a5f",
-              whiteSpace: "nowrap",
-              boxShadow: "0 4px 20px rgba(59,130,246,0.25)",
-              fontFamily: "'Fredoka', sans-serif",
-            }}
-          >
-            {country.emoji} {country.name}
-          </div>
-          <div
-            style={{
-              width: 0,
-              height: 0,
-              borderLeft: "6px solid transparent",
-              borderRight: "6px solid transparent",
-              borderTop: "7px solid rgba(255,255,255,0.95)",
-            }}
-          />
-        </div>
-      </Html>
-    </group>
+          {emoji}
+        </span>
+        <span
+          style={{
+            background: "rgba(255,255,255,0.95)",
+            color: "#1e3a5f",
+            fontSize: "11px",
+            fontWeight: 700,
+            padding: "2px 8px",
+            borderRadius: "8px",
+            whiteSpace: "nowrap",
+            fontFamily: "'Fredoka', sans-serif",
+            boxShadow: "0 2px 8px rgba(59,130,246,0.2)",
+            opacity: hovered ? 1 : 0,
+            transition: "opacity 0.2s ease",
+            pointerEvents: "none",
+          }}
+        >
+          {name}
+        </span>
+      </button>
+    </Html>
   );
 }
 
-interface EarthGlobeProps {
-  countries: Country[];
-  meshRef: React.RefObject<THREE.Mesh>;
-  onHover: (country: Country | null) => void;
-  onCountryClick: (countryId: string) => void;
-}
-
-function EarthGlobe({ countries, meshRef, onHover, onCountryClick }: EarthGlobeProps) {
+function EarthGlobe({ meshRef }: { meshRef: React.RefObject<THREE.Mesh> }) {
   const texture = useLoader(THREE.TextureLoader, "/images/earth-texture.jpg");
-  const hoveredRef = useRef<Country | null>(null);
-  const isDragging = useRef(false);
 
   useMemo(() => {
     texture.anisotropy = 16;
     texture.colorSpace = THREE.SRGBColorSpace;
   }, [texture]);
 
-  useFrame((_, delta) => {
-    if (meshRef.current) meshRef.current.rotation.y += delta * 0.05;
-  });
-
   return (
-    <mesh
-      ref={meshRef}
-      onPointerDown={() => { isDragging.current = false; }}
-      onPointerMove={(e) => {
-        // Suppress hover updates while the user is dragging/spinning
-        if (e.buttons !== 0) { isDragging.current = true; return; }
-        e.stopPropagation();
-        if (!meshRef.current) return;
-        const localPoint = meshRef.current.worldToLocal(e.point.clone());
-        const { lat, lng } = vector3ToLatLng(localPoint);
-        const country = nearestCountry(lat, lng, countries);
-        hoveredRef.current = country;
-        onHover(country);
-        document.body.style.cursor = country ? "pointer" : "default";
-      }}
-      onPointerLeave={() => {
-        hoveredRef.current = null;
-        onHover(null);
-        document.body.style.cursor = "default";
-      }}
-      onClick={(e) => {
-        e.stopPropagation();
-        if (!isDragging.current && hoveredRef.current) {
-          onCountryClick(hoveredRef.current.id);
-        }
-        isDragging.current = false;
-      }}
-    >
+    <mesh ref={meshRef}>
       <sphereGeometry args={[2, 128, 128]} />
       <meshPhongMaterial map={texture} shininess={15} specular={new THREE.Color(0x111122)} />
     </mesh>
@@ -197,7 +131,6 @@ interface Globe3DProps {
 
 export default function Globe3D({ countries, onCountryClick }: Globe3DProps) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const [hoveredCountry, setHoveredCountry] = useState<Country | null>(null);
 
   return (
     <div className="w-full h-full">
@@ -215,21 +148,25 @@ export default function Globe3D({ countries, onCountryClick }: Globe3DProps) {
         <directionalLight position={[-5, 2, -4]} intensity={0.6} color="#c8e8ff" />
 
         <Atmosphere />
-        <EarthGlobe
-          countries={countries}
-          meshRef={meshRef}
-          onHover={setHoveredCountry}
-          onCountryClick={onCountryClick}
-        />
-        {hoveredCountry && (
-          <CountryTooltip country={hoveredCountry} meshRef={meshRef} />
-        )}
+        <EarthGlobe meshRef={meshRef} />
+
+        {countries.map((country) => (
+          <GlobeMarker
+            key={country.id}
+            lat={country.lat}
+            lng={country.lng}
+            emoji={country.emoji}
+            name={country.name}
+            onClick={() => onCountryClick(country.id)}
+            occludeRef={meshRef}
+          />
+        ))}
 
         <OrbitControls
           enableZoom={false}
           enablePan={false}
           autoRotate
-          autoRotateSpeed={0.25}
+          autoRotateSpeed={0.4}
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={Math.PI - Math.PI / 4}
         />
