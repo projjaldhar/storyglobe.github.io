@@ -1,0 +1,109 @@
+import { Suspense, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import Globe3D from "@/components/Globe3D";
+import StoryDrawer from "@/components/StoryDrawer";
+import BadgeCollection from "@/components/BadgeCollection";
+import { useCountries } from "@/hooks/useCountries";
+import { useBadges } from "@/hooks/useBadges";
+import type { Country } from "@/data/stories";
+import globeHero from "@/assets/globe-hero.png";
+
+const Index = () => {
+  const navigate = useNavigate();
+  const badges = useBadges();
+  const { data: countries = [] } = useCountries();
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+
+  const handleCountryClick = (countryId: string) => {
+    const country = countries.find((c) => c.id === countryId);
+    if (country) {
+      setSelectedCountry(country);
+      if (!badges.isCountryUnlocked(countryId)) {
+        badges.unlockCountry(countryId);
+      }
+    }
+  };
+
+  return (
+    <div className="h-screen w-screen overflow-hidden relative bg-[#060a14]">
+      {/* Fullscreen Globe */}
+      <Suspense
+        fallback={
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="text-center">
+              <img src={globeHero} alt="Globe" className="w-48 h-48 mx-auto float-animation opacity-60" />
+              <p className="font-display text-base text-muted-foreground mt-4">Loading the globe…</p>
+            </div>
+          </div>
+        }
+      >
+        <Globe3D countries={countries} onCountryClick={handleCountryClick} />
+      </Suspense>
+
+      {/* Minimal overlay title */}
+      <div className="absolute top-0 left-0 right-0 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="px-6 pt-6 pb-4 flex items-center justify-between"
+        >
+          <div>
+            <h1 className="font-display text-xl md:text-2xl font-bold text-primary-foreground/90 drop-shadow-lg">
+              Stories Around the World
+            </h1>
+            <p className="text-xs md:text-sm text-primary-foreground/50 mt-0.5 font-body">
+              Tap a country to explore
+            </p>
+          </div>
+          {badges.totalCountries > 0 && (
+            <div className="pointer-events-auto">
+              <button
+                onClick={() => setSelectedCountry(null)}
+                className="flex items-center gap-1.5 bg-card/10 backdrop-blur-md border border-primary-foreground/10 rounded-full px-3 py-1.5 text-xs font-display font-semibold text-primary-foreground/70 hover:bg-card/20 transition-colors"
+              >
+                🏅 {badges.unlockedCountries.length}/{countries.length}
+              </button>
+            </div>
+          )}
+        </motion.div>
+      </div>
+
+      {/* Bottom hint */}
+      <AnimatePresence>
+        {!selectedCountry && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute bottom-6 left-0 right-0 text-center pointer-events-none"
+          >
+            <p className="text-xs text-primary-foreground/30 font-body">
+              🖱️ Drag to spin · Click a flag to discover stories
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Bottom Sheet Story Drawer */}
+      <StoryDrawer
+        country={selectedCountry}
+        onClose={() => setSelectedCountry(null)}
+        onStoryClick={(storyId) => {
+          if (selectedCountry) {
+            navigate(`/country/${selectedCountry.id}?story=${storyId}`);
+          }
+        }}
+        onAuthorClick={(authorId) => {
+          if (selectedCountry) {
+            navigate(`/country/${selectedCountry.id}?author=${authorId}`);
+          }
+        }}
+        badges={badges}
+      />
+    </div>
+  );
+};
+
+export default Index;
