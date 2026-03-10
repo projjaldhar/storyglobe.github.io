@@ -59,6 +59,7 @@ export default function CountryPage() {
             onBack={() => navigate(`/country/${countryId}`)}
             isRead={badges.isStoryRead(selectedStory.id)}
             onMarkRead={() => badges.markStoryRead(selectedStory.id)}
+            countryId={countryId}
           />
         </div>
       </div>

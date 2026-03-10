@@ -1,23 +1,28 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, BookOpen, CheckCircle, ChevronDown, Clock } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle, ChevronDown, Clock, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { Story } from "@/data/stories";
 import { tales } from "@/data/tales";
 import type { Tale } from "@/data/tales";
+import { useBadges } from "@/hooks/useBadges";
 
 interface StoryDetailProps {
   story: Story;
   onBack: () => void;
   isRead: boolean;
   onMarkRead: () => void;
+  countryId?: string;
 }
 
 function estimateReadTime(text: string): number {
   return Math.max(2, Math.ceil(text.split(/\s+/).length / 150));
 }
 
-export default function StoryDetail({ story, onBack, isRead, onMarkRead }: StoryDetailProps) {
+export default function StoryDetail({ story, onBack, isRead, onMarkRead, countryId }: StoryDetailProps) {
   const readTime = estimateReadTime(story.summary);
+  const navigate = useNavigate();
+  const badges = useBadges();
   const [expandedTaleId, setExpandedTaleId] = useState<string | null>(null);
 
   const storyTales = tales.filter((t) => t.storyId === story.id);
@@ -116,7 +121,32 @@ export default function StoryDetail({ story, onBack, isRead, onMarkRead }: Story
 
           <div className="flex flex-col gap-3">
             {storyTales.map((tale: Tale) => {
+              const hasReadingMode = !!(tale.pages && tale.pages.length > 0 && tale.questions && tale.questions.length > 0);
+              const isCompleted = badges.isTaleCompleted(tale.id);
               const isOpen = expandedTaleId === tale.id;
+
+              if (hasReadingMode && countryId) {
+                return (
+                  <motion.button
+                    key={tale.id}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => navigate(`/country/${countryId}/story/${story.id}/tale/${tale.id}`)}
+                    className="w-full flex items-center gap-4 px-5 py-4 bg-primary/5 border border-primary/10 rounded-2xl hover:bg-primary/10 transition-colors text-left"
+                  >
+                    <span className="text-2xl shrink-0">{tale.emoji}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-serif font-semibold text-foreground text-base leading-snug">{tale.title}</p>
+                      {isCompleted && (
+                        <p className="text-xs text-green-600 font-display font-semibold mt-0.5 flex items-center gap-1">
+                          <CheckCircle className="w-3 h-3" /> Completed
+                        </p>
+                      )}
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-primary shrink-0" />
+                  </motion.button>
+                );
+              }
+
               return (
                 <div
                   key={tale.id}

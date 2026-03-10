@@ -5,14 +5,18 @@ const STORAGE_KEY = "stories-around-the-world-badges";
 export interface BadgeState {
   unlockedCountries: string[];
   storiesRead: string[];
+  talesCompleted: string[];
 }
 
 function loadState(): BadgeState {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return { talesCompleted: [], ...parsed };
+    }
   } catch {}
-  return { unlockedCountries: [], storiesRead: [] };
+  return { unlockedCountries: [], storiesRead: [], talesCompleted: [] };
 }
 
 function saveState(state: BadgeState) {
@@ -48,12 +52,25 @@ export function useBadges() {
     return state.storiesRead.includes(storyId);
   }, [state.storiesRead]);
 
+  const completeTale = useCallback((taleId: string) => {
+    setState((prev) => {
+      if (prev.talesCompleted.includes(taleId)) return prev;
+      return { ...prev, talesCompleted: [...prev.talesCompleted, taleId] };
+    });
+  }, []);
+
+  const isTaleCompleted = useCallback((taleId: string) => {
+    return state.talesCompleted.includes(taleId);
+  }, [state.talesCompleted]);
+
   return {
     ...state,
     unlockCountry,
     markStoryRead,
     isCountryUnlocked,
     isStoryRead,
+    completeTale,
+    isTaleCompleted,
     totalCountries: state.unlockedCountries.length,
     totalStories: state.storiesRead.length,
   };

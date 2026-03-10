@@ -1,9 +1,17 @@
+export interface Question {
+  question: string;
+  options: [string, string, string];
+  correctIndex: 0 | 1 | 2;
+}
+
 export interface Tale {
   id: string;
   storyId: string; // matches the story id in stories.ts
   title: string;
   emoji: string;
   content: string;
+  pages?: string[];       // story split into page-by-page chunks for the reading view
+  questions?: Question[]; // exactly 3 MCQs shown after the last page
 }
 
 export const tales: Tale[] = [
@@ -15,6 +23,28 @@ export const tales: Tale[] = [
     emoji: "🕷️",
     content:
       "Long ago, all the world's stories belonged to Nyame, the Sky God. Anansi the spider wanted them desperately, but the price was enormous — a python, a leopard, and a hornets' nest. Everyone laughed at the tiny spider. But Anansi was clever! He tricked the python into letting itself be tied to a branch by pretending to measure it. He lured the leopard into a pit with honey. And he chased the hornets into a gourd by pouring water on them and telling them to shelter inside. Anansi brought all three to Nyame, who was so amazed he gave Anansi every story in the world. That is why, to this day, all tales are called 'spider stories.'",
+    pages: [
+      "Long ago, all the world's stories belonged to Nyame, the Sky God. Anansi the spider wanted them desperately — but the price was enormous. Nyame demanded three impossible things: a fierce python, a dangerous leopard, and a swarm of stinging hornets. Everyone laughed at the tiny spider. How could he ever do it?",
+      "But Anansi was very clever! He tricked the python into being tied to a branch by pretending to measure who was longer. He dug a pit filled with honey and lured the proud leopard right into it. Then he poured water on a hornets' nest and shouted, 'Quick — climb into this gourd to stay dry!' The hornets flew straight in and Anansi sealed the lid!",
+      "Anansi brought all three to Nyame, the Sky God. Nyame could hardly believe his eyes. 'Even great kings and warriors have failed this task,' he said. 'From this day forward, all the stories of the world belong to you, Anansi!' And that is why, to this very day, all tales are called Spider Stories. 🕷️",
+    ],
+    questions: [
+      {
+        question: "What did Anansi want from Nyame, the Sky God?",
+        options: ["A bag of gold", "All the world's stories", "A magical spider web"],
+        correctIndex: 1,
+      },
+      {
+        question: "How did Anansi trick the hornets into the gourd?",
+        options: ["He used a net", "He poured water and told them to shelter inside", "He sang them to sleep"],
+        correctIndex: 1,
+      },
+      {
+        question: "What did Nyame give Anansi as a reward?",
+        options: ["A new home in the sky", "Magic powers", "All the stories in the world"],
+        correctIndex: 2,
+      },
+    ],
   },
   {
     id: "anansi-and-the-turtle",
@@ -23,6 +53,28 @@ export const tales: Tale[] = [
     emoji: "🐢",
     content:
       "Anansi had cooked a delicious yam stew and did not want to share. When Turtle arrived hungry from a long journey, Anansi told him he must wash his dusty hands before eating. Turtle walked all the way to the river, washed up, and trudged back — but his feet got dusty again on the walk. Every time Turtle sat down, Anansi sent him back to wash. By the time Turtle gave up, the bowl was empty. Turtle smiled and said nothing. Weeks later, Turtle invited Anansi to a feast underwater. Anansi dove down eagerly, but Turtle told him he must remove his coat first. Anansi's coat was his air! Without it, he floated right back up — and Turtle ate every bite alone.",
+    pages: [
+      "Anansi had spent all morning cooking a big pot of delicious yam stew. Just as he sat down to eat, there was a knock at the door. It was Turtle, dusty and hungry from a very long journey. Anansi did not want to share — not even one spoonful!",
+      "'You are welcome to eat,' said Anansi with a sneaky smile, 'but you must wash your dusty hands first.' Turtle walked all the way to the river, washed carefully, and walked all the way back. But his feet got dusty on the path again! Every time Turtle sat down, Anansi sent him back. By the time Turtle gave up, every last drop of stew was gone.",
+      "Weeks later, Turtle invited Anansi to a grand feast — at the bottom of the river! Anansi dove down and saw a wonderful spread of food. 'In my home,' said Turtle calmly, 'we do not eat with our coats on.' But Anansi's coat was his air. Without it, he floated straight back up to the surface — hungry! Some tricks always find their way back. 🐢",
+    ],
+    questions: [
+      {
+        question: "Why did Anansi keep sending Turtle to wash his hands?",
+        options: ["Turtle's hands were truly very dirty", "So Anansi could eat all the food himself", "It was a rule in Anansi's village"],
+        correctIndex: 1,
+      },
+      {
+        question: "Where did Turtle invite Anansi to eat?",
+        options: ["In a tall tree", "On top of a mountain", "At the bottom of the river"],
+        correctIndex: 2,
+      },
+      {
+        question: "Why couldn't Anansi eat at Turtle's feast?",
+        options: ["He was not hungry", "He could not remove his coat — it was his air", "The food was too spicy"],
+        correctIndex: 1,
+      },
+    ],
   },
   {
     id: "anansi-wisdom-pot",
@@ -31,6 +83,28 @@ export const tales: Tale[] = [
     emoji: "🫙",
     content:
       "Anansi once decided to collect all the wisdom in the world so he could be the smartest creature alive. He gathered wisdom from every corner of the forest into a giant clay pot. Then he tried to climb a tall tree to hide it at the top where no one could reach. But the pot was so huge he could not get a grip on the bark while holding it in front of him. His young son watched and said, 'Father, why not carry the pot on your back?' Anansi was furious — he had all the world's wisdom in the pot, yet his little boy had just been wiser than him! He smashed the pot, and wisdom scattered everywhere. That is why wisdom is shared among all living things.",
+    pages: [
+      "Anansi had a very big plan. He decided to collect ALL the wisdom in the world and keep it for himself! For many days he wandered the forest, gathering every bit of wisdom he could find and stuffing it into an enormous clay pot. 'Soon I will be the smartest creature alive!' he said.",
+      "When the pot was full, Anansi tried to climb a tall tree to hide it at the very top. But the pot was so huge that it kept banging against the trunk. He slipped and slid and could not get a grip. He tried and tried — but he just could not do it.",
+      "Anansi's little son was watching. 'Father,' the boy said quietly, 'wouldn't it be easier to carry the pot on your back?' Anansi froze. He had ALL the world's wisdom in his pot — yet his own small son had just been wiser than him! Anansi smashed the pot. Wisdom flew in every direction across the whole world. And that is why no one person has all the wisdom — it belongs to everyone. 🫙",
+    ],
+    questions: [
+      {
+        question: "What did Anansi collect and put inside the pot?",
+        options: ["All the food in the forest", "All the wisdom in the world", "All the gold he could find"],
+        correctIndex: 1,
+      },
+      {
+        question: "Where did Anansi want to hide the pot?",
+        options: ["Underground", "In the river", "At the top of a tall tree"],
+        correctIndex: 2,
+      },
+      {
+        question: "Who gave Anansi the clever idea of carrying the pot on his back?",
+        options: ["His son", "An old owl", "Turtle"],
+        correctIndex: 0,
+      },
+    ],
   },
 
   // why-stories
@@ -41,6 +115,28 @@ export const tales: Tale[] = [
     emoji: "🐆",
     content:
       "Once upon a time, the leopard had a coat as plain and golden as sunshine. He was so proud of it that he boasted to every animal in the forest. One day, the clever hare grew tired of the leopard's bragging and challenged him to a hiding contest. 'Hide anywhere you like,' said Hare, 'and I will find you!' Leopard hid behind a bush, but his golden fur glowed in the shadows and Hare spotted him immediately. Embarrassed, Leopard begged the forest spirit for help. The spirit dipped her fingers in mud and pressed spots all over Leopard's coat so he could blend into dappled shadows. From that day on, Leopard became the greatest hunter — and never bragged again.",
+    pages: [
+      "Long, long ago, Leopard's coat was completely plain — smooth and golden like the savannah grass. Leopard was very, very proud of it. He walked through the forest every day telling all the animals how beautiful he was. 'There is no coat more magnificent than mine!' he would boast.",
+      "Clever Hare grew very tired of the bragging. One day she said, 'Let us play a hiding game! Hide anywhere you like, and I will find you in ten seconds.' Leopard laughed and hid behind a bush — but his bright golden coat shone like a torch in the shadows. Hare found him instantly! Leopard was so embarrassed he wanted to disappear.",
+      "That night, Leopard crept to the forest spirit and begged for help. The kind spirit dipped her fingers in dark mud and gently pressed spots all over his golden coat. When morning came, Leopard could hide perfectly in the dappled shade of the trees. He became the greatest hunter in the forest — and he never boasted about his coat again. 🐆",
+    ],
+    questions: [
+      {
+        question: "What did Leopard's coat look like before he got his spots?",
+        options: ["Striped like a tiger", "Plain and golden", "White and fluffy"],
+        correctIndex: 1,
+      },
+      {
+        question: "Who challenged Leopard to the hiding contest?",
+        options: ["The lion", "Anansi the spider", "The clever hare"],
+        correctIndex: 2,
+      },
+      {
+        question: "Who gave Leopard his spots?",
+        options: ["Hare", "The forest spirit", "Anansi"],
+        correctIndex: 1,
+      },
+    ],
   },
   {
     id: "why-mosquitoes-buzz",
@@ -49,6 +145,28 @@ export const tales: Tale[] = [
     emoji: "🦟",
     content:
       "Long ago, Mosquito told Iguana a ridiculous lie — that he had seen a yam as big as a house. Iguana was so annoyed he put sticks in his ears so he wouldn't have to listen anymore. That made Python think Iguana was plotting something, so Python hid in a hole. Rabbit saw Python disappear and screamed in alarm. Crow warned all the birds, who woke Owl. Owl was so startled she forgot to call the sun to rise. The world stayed dark! Mother Owl would not wake the sun until she found out who started the trouble. Finally, all blame returned to Mosquito. Since then, guilty Mosquito flies in people's ears whispering, 'Is everyone still angry with me?' — and we slap her every time.",
+    pages: [
+      "One day, Mosquito told Iguana a ridiculous lie: 'I saw a yam as big as a house!' Iguana was so annoyed that he stuck sticks in his ears so he wouldn't have to listen. When Python saw Iguana acting strangely, he got frightened and hid deep in a hole. Rabbit saw Python disappear and screamed in alarm!",
+      "Crow heard Rabbit scream and warned all the birds. The birds woke up Owl, who was so startled she forgot her most important job — calling the sun to rise! All night the world stayed dark and cold. All the animals huddled together, very scared. Nobody knew what had happened.",
+      "Mother Owl refused to call the sun until she found out who had started all the trouble. One by one, the animals told their stories — until all the blame came back to Mosquito and her silly lie. Since that day, guilty Mosquito buzzes in people's ears asking, 'Is everyone still angry with me?' And that is why we always slap her! 🦟",
+    ],
+    questions: [
+      {
+        question: "What silly lie did Mosquito tell Iguana?",
+        options: ["That a lion was chasing her", "That she had seen a yam as big as a house", "That it was going to rain for a year"],
+        correctIndex: 1,
+      },
+      {
+        question: "What terrible thing happened because Owl forgot her job?",
+        options: ["All the animals fell asleep", "The world stayed dark and the sun did not rise", "All the food disappeared"],
+        correctIndex: 1,
+      },
+      {
+        question: "Why does Mosquito buzz in people's ears?",
+        options: ["She is looking for food", "She wants to sing a song", "She is asking if everyone is still angry with her"],
+        correctIndex: 2,
+      },
+    ],
   },
   {
     id: "why-sky-is-far-away",
@@ -57,6 +175,28 @@ export const tales: Tale[] = [
     emoji: "☁️",
     content:
       "Long ago, the sky hung so low over the earth that you could reach up and tear off pieces of cloud to eat. The sky was sweet like honeycomb, and people never needed to farm. But people grew lazy and wasteful. They tore off more sky than they could ever eat, leaving great chunks rotting on the ground. The sky god warned them again and again: 'Take only what you need!' But people did not listen. One day a greedy woman tore off an enormous piece, ate just one bite, and threw the rest away. The sky god was furious. With a mighty rumble, he rose far up beyond anyone's reach. Since that day, people have had to grow their own food and learn to be thankful for every meal.",
+    pages: [
+      "Long, long ago, the sky hung very low — so low you could reach up and tear off a piece of cloud to eat! The sky tasted sweet, like honeycomb and sugarcane. Nobody needed to plant crops or cook. Whenever you were hungry, you simply reached up and took a piece of sky.",
+      "But people grew greedy and lazy. They tore off far more sky than they could ever eat. Great chunks of cloud were left rotting on the ground. The sky god warned the people again and again: 'Please — take only what you need!' But the people laughed and kept on wasting.",
+      "One day, a very greedy woman tore off an enormous piece of sky — as big as a house! She took one tiny bite and threw the rest on the ground. The sky god had had enough. With a great BOOM, he rose up far above the earth, beyond anyone's reach. Since that day, people must plant seeds, water crops, and work hard for every meal. And we must always be grateful for the food we have. ☁️",
+    ],
+    questions: [
+      {
+        question: "What could people eat long ago by reaching up?",
+        options: ["Fruit from the clouds", "Pieces of the sky", "Rain drops of honey"],
+        correctIndex: 1,
+      },
+      {
+        question: "Why was the sky god angry with the people?",
+        options: ["They were too noisy", "They wasted sky food and left it to rot", "They forgot to say thank you"],
+        correctIndex: 1,
+      },
+      {
+        question: "What must people do now that the sky is far away?",
+        options: ["Climb very tall trees to reach it", "Ask birds to bring them food", "Grow their own food and work hard"],
+        correctIndex: 2,
+      },
+    ],
   },
 
   // panchatantra
@@ -297,5 +437,27 @@ export const tales: Tale[] = [
     emoji: "🦁",
     content:
       "A great golden lion was sleeping under a shady acacia tree when a tiny mouse ran across his enormous paw. The lion woke with a roar, snatched the mouse up, and opened his jaws. 'Please!' squeaked the mouse. 'Spare me and someday I will help you!' The lion laughed so hard at the idea of such a tiny creature ever helping the King of Beasts that he set the mouse free just for the joke of it. Days later, the lion walked into a hunter's net hidden in the grass. He roared and struggled but only tangled himself tighter. The little mouse heard him and came running. She gnawed and gnawed at the thick ropes until they snapped apart one by one. The lion walked free and bowed his great golden head to his tiny friend.",
+    pages: [
+      "A great golden lion was sleeping peacefully under a shady acacia tree. Suddenly a tiny mouse ran right across his enormous nose! The lion woke with a thunderous ROAR. He snatched up the trembling mouse in his giant paw and opened his jaws wide.",
+      "'Please spare me, great Lion!' squeaked the mouse. 'Let me go and one day I promise I will help you!' The lion burst out laughing. How could a tiny mouse ever help the King of all Beasts? He was laughing so hard that he simply opened his paw and let her scurry away.",
+      "A few days later, the lion stepped into a hunter's net hidden in the tall grass. He roared and struggled, but the ropes only pulled tighter. The little mouse heard his roars and came running as fast as her tiny legs could carry her. She gnawed through the ropes one by one — snap, snap, snap! — until the lion walked free. He bowed his great golden head. No friend is ever too small. 🦁",
+    ],
+    questions: [
+      {
+        question: "Why did the lion let the mouse go free?",
+        options: ["He was not hungry", "He laughed so hard at the idea of a mouse helping him", "The mouse promised him a gift"],
+        correctIndex: 1,
+      },
+      {
+        question: "What trapped the lion in the forest?",
+        options: ["A deep hole", "A fallen tree", "A hunter's net hidden in the grass"],
+        correctIndex: 2,
+      },
+      {
+        question: "How did the mouse free the lion?",
+        options: ["By calling other animals for help", "By gnawing through the ropes", "By scaring the hunter away"],
+        correctIndex: 1,
+      },
+    ],
   },
 ];
