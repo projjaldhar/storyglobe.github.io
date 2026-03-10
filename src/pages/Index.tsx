@@ -14,6 +14,7 @@ const Index = () => {
   const badges = useBadges();
   const { data: countries = [] } = useCountries();
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [showBadges, setShowBadges] = useState(false);
 
   const handleCountryClick = (countryId: string) => {
     const country = countries.find((c) => c.id === countryId);
@@ -60,7 +61,7 @@ const Index = () => {
           {badges.totalCountries > 0 && (
             <div className="pointer-events-auto">
               <button
-                onClick={() => setSelectedCountry(null)}
+                onClick={() => setShowBadges(true)}
                 className="flex items-center gap-1.5 bg-white/60 backdrop-blur-md border border-slate-200 rounded-full px-3 py-1.5 text-xs font-display font-semibold text-slate-600 hover:bg-white/80 transition-colors"
               >
                 🏅 {badges.unlockedCountries.length}/{countries.length}
@@ -82,6 +83,43 @@ const Index = () => {
             <p className="text-xs text-slate-400 font-body">
               🖱️ Drag to spin · Click a flag to discover stories
             </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Badges modal */}
+      <AnimatePresence>
+        {showBadges && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm p-6"
+            onClick={() => setShowBadges(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 16 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="w-full max-w-sm"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-3 px-1">
+                <span className="font-display text-base font-bold text-slate-800">Countries Explored</span>
+                <button
+                  onClick={() => setShowBadges(false)}
+                  className="text-slate-400 hover:text-slate-600 text-xl leading-none"
+                >
+                  ✕
+                </button>
+              </div>
+              <BadgeCollection
+                unlockedCountries={badges.unlockedCountries}
+                totalStories={badges.totalStories}
+                countries={countries}
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

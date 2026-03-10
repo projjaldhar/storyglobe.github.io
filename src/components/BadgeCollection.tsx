@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { countries } from "@/data/stories";
+import { countries as staticCountries } from "@/data/stories";
+import type { Country } from "@/data/stories";
 
 interface BadgeCollectionProps {
   unlockedCountries: string[];
   totalStories: number;
+  countries?: Country[];
 }
 
-export default function BadgeCollection({ unlockedCountries, totalStories }: BadgeCollectionProps) {
-  if (unlockedCountries.length === 0) return null;
-
+export default function BadgeCollection({ unlockedCountries, totalStories, countries = staticCountries }: BadgeCollectionProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
