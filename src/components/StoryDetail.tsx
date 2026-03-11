@@ -7,6 +7,109 @@ import { tales } from "@/data/tales";
 import type { Tale } from "@/data/tales";
 import { useBadges } from "@/hooks/useBadges";
 
+// Thematic animated hero scenes per story
+const storyScenes: Record<string, { gradient: string; emojis: string[] }> = {
+  // India
+  'panchatantra':            { gradient: 'from-amber-700 via-orange-800 to-amber-900',    emojis: ['🦁','🐭','🐦','🌿','🌳'] },
+  'hitopadesha':             { gradient: 'from-yellow-700 via-amber-800 to-orange-900',   emojis: ['📖','🦁','🕊️','🌸','✨'] },
+  'jataka-tales':            { gradient: 'from-violet-800 via-purple-900 to-indigo-900',  emojis: ['🐘','🌙','🌸','🕊️','🌿'] },
+  // Japan
+  'momotaro':                { gradient: 'from-pink-600 via-rose-700 to-pink-900',        emojis: ['🍑','🐒','🐕','🐦','🌸'] },
+  'tanuki-tales':            { gradient: 'from-green-700 via-emerald-800 to-green-900',   emojis: ['🦝','🍃','🍄','🌙','✨'] },
+  'urashima-taro':           { gradient: 'from-blue-700 via-cyan-800 to-blue-900',        emojis: ['🐢','🐠','🌊','🐙','✨'] },
+  // China
+  'journey-to-the-west':    { gradient: 'from-red-700 via-orange-800 to-yellow-900',     emojis: ['🐒','🌩️','🏔️','🌸','✨'] },
+  'legend-white-snake':      { gradient: 'from-teal-700 via-cyan-800 to-blue-900',        emojis: ['🐍','🌊','🌿','🏮','✨'] },
+  // UK
+  'arthurian-legends':       { gradient: 'from-slate-700 via-blue-800 to-slate-900',     emojis: ['🗡️','🏰','✨','🛡️','🌟'] },
+  'peter-pan':               { gradient: 'from-indigo-600 via-blue-800 to-indigo-900',   emojis: ['✨','🧚','⭐','🌙','🐊'] },
+  // Ireland
+  'irish-folk-tales':        { gradient: 'from-emerald-600 via-green-700 to-emerald-900',emojis: ['🍀','🌈','🧚','🌿','✨'] },
+  'celtic-fairy-tales':      { gradient: 'from-purple-700 via-emerald-800 to-teal-900',  emojis: ['🔮','🦌','🌊','🌙','🍀'] },
+  // Germany
+  'grimms-fairy-tales':      { gradient: 'from-green-800 via-emerald-900 to-slate-900',  emojis: ['🏰','🍎','🐺','🌲','✨'] },
+  'struwwelpeter':           { gradient: 'from-red-800 via-orange-900 to-gray-900',      emojis: ['✂️','🔥','🌧️','📖','⚠️'] },
+  // Ghana / West Africa
+  'anansi-stories':          { gradient: 'from-amber-700 via-orange-800 to-yellow-900',  emojis: ['🕷️','🌙','🌿','🔥','🌟'] },
+  'why-stories':             { gradient: 'from-orange-600 via-amber-700 to-orange-900',  emojis: ['🌅','🦁','🐘','🌳','✨'] },
+  'lion-and-mouse':          { gradient: 'from-yellow-600 via-amber-700 to-yellow-900',  emojis: ['🦁','🐭','🌅','🌳','🦅'] },
+  // Egypt
+  'egyptian-mythology':      { gradient: 'from-yellow-600 via-amber-800 to-orange-900',  emojis: ['🐱','🌊','🌟','🏺','⭐'] },
+  'isis-osiris':             { gradient: 'from-amber-700 via-purple-900 to-indigo-900',  emojis: ['👁️','🌿','🌙','🦅','✨'] },
+  // USA
+  'native-american-legends': { gradient: 'from-orange-700 via-red-800 to-amber-900',    emojis: ['🦅','🌙','🌾','🐺','⭐'] },
+  'american-tall-tales':     { gradient: 'from-blue-700 via-red-800 to-blue-900',        emojis: ['🪓','🌊','🌪️','⛰️','🌟'] },
+  // Mexico
+  'aztec-creation-myths':    { gradient: 'from-red-700 via-orange-800 to-yellow-900',   emojis: ['🌞','🐍','🦅','🌿','🔥'] },
+  'la-llorona':              { gradient: 'from-teal-800 via-blue-900 to-indigo-900',     emojis: ['🌊','🌙','👻','🌺','💧'] },
+  // Brazil
+  'saci-perere':             { gradient: 'from-green-600 via-emerald-700 to-green-900',  emojis: ['🌿','🦜','🔥','🌳','✨'] },
+  'legend-of-iara':          { gradient: 'from-cyan-700 via-teal-800 to-blue-900',       emojis: ['🌊','🧜','🌿','🐠','🌙'] },
+  // Peru
+  'inca-legends':            { gradient: 'from-yellow-600 via-amber-700 to-orange-900',  emojis: ['🌞','🦙','⛰️','🌿','✨'] },
+  'andean-folk-tales':       { gradient: 'from-orange-700 via-amber-800 to-red-900',     emojis: ['🌄','🐍','🦅','🌙','🌺'] },
+  // Australia
+  'dreamtime-stories':       { gradient: 'from-orange-700 via-red-800 to-orange-900',   emojis: ['🦘','🌅','🐊','🦎','⭐'] },
+  'bunyip-tales':            { gradient: 'from-blue-700 via-teal-800 to-blue-900',       emojis: ['🌊','👹','🌙','🐊','🌿'] },
+  // New Zealand
+  'maui-legends':            { gradient: 'from-blue-600 via-teal-700 to-blue-900',       emojis: ['🌊','🎣','☀️','🐋','🌺'] },
+  'taniwha-tales':           { gradient: 'from-indigo-700 via-blue-800 to-teal-900',     emojis: ['🐉','🌊','🌙','🌿','⭐'] },
+  // Russia
+  'baba-yaga':               { gradient: 'from-slate-700 via-gray-800 to-slate-900',    emojis: ['🏚️','🌲','🦆','🌑','✨'] },
+  'firebird':                { gradient: 'from-orange-600 via-red-700 to-orange-900',   emojis: ['🔥','🐦','⭐','🌟','✨'] },
+  // Norway
+  'norse-mythology':         { gradient: 'from-gray-700 via-slate-800 to-blue-900',     emojis: ['⚡','🐺','🌩️','🪓','🌙'] },
+  'norway-trolls':           { gradient: 'from-green-700 via-emerald-800 to-green-900', emojis: ['🧌','🌲','🏔️','🐐','🌊'] },
+  // Iran
+  'shahnameh':               { gradient: 'from-amber-700 via-red-800 to-amber-900',     emojis: ['👑','🦅','🗡️','🏹','🌟'] },
+  'thousand-nights':         { gradient: 'from-indigo-700 via-blue-800 to-purple-900',  emojis: ['🌙','⭐','🏮','🧞','🌊'] },
+};
+
+const floatPositions = [
+  { left: '10%', top: '18%', size: 'text-4xl', duration: 4.2, delay: 0.0, yRange: 14 },
+  { left: '70%', top: '10%', size: 'text-5xl', duration: 5.0, delay: 0.7, yRange: 10 },
+  { left: '80%', top: '60%', size: 'text-3xl', duration: 3.8, delay: 1.3, yRange: 12 },
+  { left: '6%',  top: '65%', size: 'text-4xl', duration: 4.6, delay: 0.4, yRange: 16 },
+  { left: '45%', top: '72%', size: 'text-3xl', duration: 4.0, delay: 1.0, yRange: 10 },
+];
+
+function StoryHero({ storyId, emoji }: { storyId: string; emoji: string }) {
+  const scene = storyScenes[storyId] ?? {
+    gradient: 'from-primary/40 via-primary/20 to-background',
+    emojis: [emoji, '✨', '📖', '🌟', '🎭'],
+  };
+
+  return (
+    <div className={`relative rounded-2xl overflow-hidden mb-8 aspect-[16/9] bg-gradient-to-br ${scene.gradient}`}>
+      {/* Subtle radial glow in centre */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.08)_0%,_transparent_70%)]" />
+
+      {scene.emojis.map((em, i) => (
+        <motion.span
+          key={i}
+          className={`absolute select-none ${floatPositions[i].size} drop-shadow-lg`}
+          style={{ left: floatPositions[i].left, top: floatPositions[i].top }}
+          animate={{
+            y: [0, -floatPositions[i].yRange, floatPositions[i].yRange * 0.5, 0],
+            x: [0, 6, -4, 0],
+            rotate: [0, 6, -4, 0],
+          }}
+          transition={{
+            duration: floatPositions[i].duration,
+            delay: floatPositions[i].delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          {em}
+        </motion.span>
+      ))}
+
+      <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+    </div>
+  );
+}
+
 interface StoryDetailProps {
   story: Story;
   onBack: () => void;
@@ -45,17 +148,8 @@ export default function StoryDetail({ story, onBack, isRead, onMarkRead, country
         Back
       </button>
 
-      {/* Header illustration */}
-      {story.illustration && (
-        <div className="relative rounded-2xl overflow-hidden mb-8 aspect-[16/9]">
-          <img
-            src={story.illustration}
-            alt={story.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-        </div>
-      )}
+      {/* Animated thematic hero */}
+      <StoryHero storyId={story.id} emoji={story.emoji} />
 
       {/* Title area */}
       <div className="mb-8">
@@ -197,23 +291,6 @@ export default function StoryDetail({ story, onBack, isRead, onMarkRead, country
         </motion.div>
       )}
 
-      {/* Mark as read */}
-      {!isRead && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="mt-8 text-center"
-        >
-          <button
-            onClick={onMarkRead}
-            className="bg-primary text-primary-foreground font-display font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity inline-flex items-center gap-2 text-sm"
-          >
-            <CheckCircle className="w-4 h-4" />
-            I finished this story!
-          </button>
-        </motion.div>
-      )}
     </motion.div>
   );
 }

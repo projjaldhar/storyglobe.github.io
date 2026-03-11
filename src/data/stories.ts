@@ -4,13 +4,6 @@ import ukImg from "@/assets/country-uk.png";
 import japanImg from "@/assets/country-japan.png";
 import africaImg from "@/assets/country-africa.png";
 
-import storyPanchatantra from "@/assets/story-panchatantra.png";
-import storyGrimm from "@/assets/story-grimm.png";
-import storyCeltic from "@/assets/story-celtic.png";
-import storyMomotaro from "@/assets/story-momotaro.png";
-import storyAnansi from "@/assets/story-anansi.png";
-import storyLionMouse from "@/assets/story-lion-mouse.png";
-
 export interface Story {
   id: string;
   title: string;
@@ -62,7 +55,7 @@ export const countries: Country[] = [
         origin: "Ancient India (~200 BCE)",
         emoji: "🐒",
         moral: "True wisdom comes from understanding both friends and foes.",
-        illustration: storyPanchatantra,
+        illustration: "https://picsum.photos/seed/panchatantra/800/450",
       },
       {
         id: "hitopadesha",
@@ -71,7 +64,7 @@ export const countries: Country[] = [
         origin: "Medieval India (~12th century)",
         emoji: "🦚",
         moral: "A friend in need is a friend indeed.",
-        illustration: storyPanchatantra,
+        illustration: "https://picsum.photos/seed/hitopadesha/800/450",
       },
       {
         id: "jataka-tales",
@@ -80,7 +73,7 @@ export const countries: Country[] = [
         origin: "Ancient India (~300 BCE)",
         emoji: "🪷",
         moral: "Kindness and compassion are the greatest strengths.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/jataka/800/450",
       },
     ],
     authors: [
@@ -119,7 +112,7 @@ export const countries: Country[] = [
         origin: "Japan (Ancient)",
         emoji: "🍑",
         moral: "With loyal friends by your side, you can overcome any challenge.",
-        illustration: storyMomotaro,
+        illustration: "https://picsum.photos/seed/momotaro/800/450",
       },
       {
         id: "tanuki-tales",
@@ -128,7 +121,7 @@ export const countries: Country[] = [
         origin: "Japan (Ancient)",
         emoji: "🦝",
         moral: "Cleverness without kindness can lead to trouble.",
-        illustration: storyMomotaro,
+        illustration: "https://picsum.photos/seed/tanuki/800/450",
       },
       {
         id: "urashima-taro",
@@ -137,7 +130,7 @@ export const countries: Country[] = [
         origin: "Japan (8th century)",
         emoji: "🐢",
         moral: "Be grateful for the present moment, for time waits for no one.",
-        illustration: storyMomotaro,
+        illustration: "https://picsum.photos/seed/urashima/800/450",
       },
     ],
     authors: [
@@ -168,7 +161,7 @@ export const countries: Country[] = [
         origin: "China (16th century)",
         emoji: "🐒",
         moral: "Even the wildest spirit can be guided by wisdom and compassion.",
-        illustration: storyMomotaro,
+        illustration: "https://picsum.photos/seed/journeywest/800/450",
       },
       {
         id: "legend-white-snake",
@@ -177,7 +170,7 @@ export const countries: Country[] = [
         origin: "China (Tang Dynasty, ~7th century)",
         emoji: "🐍",
         moral: "True love is worth any sacrifice.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/whitesnake/800/450",
       },
     ],
     authors: [
@@ -218,7 +211,7 @@ export const countries: Country[] = [
         origin: "Britain (Medieval)",
         emoji: "⚔️",
         moral: "True leadership means serving others with honor.",
-        illustration: storyCeltic,
+        illustration: "https://picsum.photos/seed/kingarthur/800/450",
       },
       {
         id: "peter-pan",
@@ -227,7 +220,7 @@ export const countries: Country[] = [
         origin: "Scotland, UK (1904)",
         emoji: "🧚",
         moral: "Growing up means responsibility, but wonder should never be lost.",
-        illustration: storyCeltic,
+        illustration: "https://picsum.photos/seed/peterpan/800/450",
       },
     ],
     authors: [
@@ -274,7 +267,7 @@ export const countries: Country[] = [
         origin: "Ireland (Ancient)",
         emoji: "🍀",
         moral: "Magic is everywhere if you know where to look.",
-        illustration: storyCeltic,
+        illustration: "https://picsum.photos/seed/irishfolk/800/450",
       },
       {
         id: "celtic-fairy-tales",
@@ -283,7 +276,7 @@ export const countries: Country[] = [
         origin: "Celtic Lands (Ancient)",
         emoji: "🧚",
         moral: "Courage and honor are the greatest treasures.",
-        illustration: storyCeltic,
+        illustration: "https://picsum.photos/seed/celticfairy/800/450",
       },
     ],
     authors: [
@@ -322,7 +315,7 @@ export const countries: Country[] = [
         origin: "Germany (1812)",
         emoji: "🏰",
         moral: "Goodness and bravery always triumph over evil.",
-        illustration: storyGrimm,
+        illustration: "https://picsum.photos/seed/grimm/800/450",
       },
       {
         id: "struwwelpeter",
@@ -331,7 +324,7 @@ export const countries: Country[] = [
         origin: "Germany (1845)",
         emoji: "✂️",
         moral: "Actions have consequences — even silly ones!",
-        illustration: storyGrimm,
+        illustration: "https://picsum.photos/seed/struwwelpeter/800/450",
       },
     ],
     authors: [
@@ -372,7 +365,7 @@ export const countries: Country[] = [
         origin: "Ghana, West Africa (Ancient)",
         emoji: "🕷️",
         moral: "Cleverness can overcome strength, but wisdom knows when not to be too clever.",
-        illustration: storyAnansi,
+        illustration: "https://picsum.photos/seed/anansi/800/450",
       },
       {
         id: "why-stories",
@@ -381,7 +374,7 @@ export const countries: Country[] = [
         origin: "West Africa (Ancient)",
         emoji: "🐆",
         moral: "There is always a story behind everything in nature.",
-        illustration: storyAnansi,
+        illustration: "https://picsum.photos/seed/whystories/800/450",
       },
       {
         id: "lion-and-mouse",
@@ -390,7 +383,7 @@ export const countries: Country[] = [
         origin: "Aesop's Fables (Ancient)",
         emoji: "🦁",
         moral: "Kindness is never wasted — even the smallest friend can be the greatest help.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/lionmouse/800/450",
       },
     ],
     authors: [
@@ -421,7 +414,7 @@ export const countries: Country[] = [
         origin: "Ancient Egypt (~3100 BCE)",
         emoji: "🏺",
         moral: "Love and justice are more powerful than any treachery.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/egyptmyths/800/450",
       },
       {
         id: "tales-of-sinuhe",
@@ -430,7 +423,7 @@ export const countries: Country[] = [
         origin: "Ancient Egypt (~1900 BCE)",
         emoji: "🌴",
         moral: "Home is always worth returning to, no matter how far you roam.",
-        illustration: storyAnansi,
+        illustration: "https://picsum.photos/seed/sinuhe/800/450",
       },
     ],
     authors: [
@@ -463,7 +456,7 @@ export const countries: Country[] = [
         origin: "North America (Ancient)",
         emoji: "🦅",
         moral: "We are all connected — to each other and to the natural world.",
-        illustration: storyAnansi,
+        illustration: "https://picsum.photos/seed/nativeamerican/800/450",
       },
       {
         id: "american-tall-tales",
@@ -472,7 +465,7 @@ export const countries: Country[] = [
         origin: "United States (19th century)",
         emoji: "🪓",
         moral: "Hard work and determination can move mountains — sometimes literally!",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/talltales/800/450",
       },
     ],
     authors: [
@@ -511,7 +504,7 @@ export const countries: Country[] = [
         origin: "Aztec Empire (~1300s CE)",
         emoji: "☀️",
         moral: "Great things often require great sacrifice.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/aztecmyth/800/450",
       },
       {
         id: "la-llorona",
@@ -520,7 +513,7 @@ export const countries: Country[] = [
         origin: "Mexico (Colonial era, ~16th century)",
         emoji: "👻",
         moral: "Choices made in sorrow can echo for a very long time.",
-        illustration: storyAnansi,
+        illustration: "https://picsum.photos/seed/llorona/800/450",
       },
     ],
     authors: [
@@ -561,7 +554,7 @@ export const countries: Country[] = [
         origin: "Brazil (Tupi-Guaraní folklore, Ancient)",
         emoji: "🌪️",
         moral: "Even mischief has its place in a world that takes itself too seriously.",
-        illustration: storyAnansi,
+        illustration: "https://picsum.photos/seed/sacipere/800/450",
       },
       {
         id: "legend-of-iara",
@@ -570,7 +563,7 @@ export const countries: Country[] = [
         origin: "Brazil (Amazonian indigenous folklore, Ancient)",
         emoji: "🧜",
         moral: "Respect nature's power — beauty can be both wonderful and dangerous.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/iara/800/450",
       },
     ],
     authors: [
@@ -601,7 +594,7 @@ export const countries: Country[] = [
         origin: "Inca Empire (~1400s CE)",
         emoji: "🌄",
         moral: "We come from the sun and return to the earth — both are sacred.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/incalegend/800/450",
       },
       {
         id: "andean-folk-tales",
@@ -610,7 +603,7 @@ export const countries: Country[] = [
         origin: "Andes Mountains (Ancient)",
         emoji: "🦙",
         moral: "The world is alive with spirits — treat every creature with respect.",
-        illustration: storyAnansi,
+        illustration: "https://picsum.photos/seed/andean/800/450",
       },
     ],
     authors: [
@@ -643,7 +636,7 @@ export const countries: Country[] = [
         origin: "Aboriginal Australia (Ancient, 60,000+ years)",
         emoji: "🌈",
         moral: "The land is alive — we are its caretakers, not its owners.",
-        illustration: storyAnansi,
+        illustration: "https://picsum.photos/seed/dreamtime/800/450",
       },
       {
         id: "bunyip-tales",
@@ -652,7 +645,7 @@ export const countries: Country[] = [
         origin: "Aboriginal Australia (Ancient)",
         emoji: "🌊",
         moral: "The unknown deserves both respect and curiosity.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/bunyip/800/450",
       },
     ],
     authors: [
@@ -691,7 +684,7 @@ export const countries: Country[] = [
         origin: "Māori, New Zealand (Ancient)",
         emoji: "🎣",
         moral: "Even the smallest person can reshape the world with enough cleverness and courage.",
-        illustration: storyMomotaro,
+        illustration: "https://picsum.photos/seed/mauifish/800/450",
       },
       {
         id: "taniwha-tales",
@@ -700,7 +693,7 @@ export const countries: Country[] = [
         origin: "Māori, New Zealand (Ancient)",
         emoji: "🐉",
         moral: "The natural world is full of powerful spirits — respect them, and they will protect you.",
-        illustration: storyLionMouse,
+        illustration: "https://picsum.photos/seed/taniwha/800/450",
       },
     ],
     authors: [
@@ -711,6 +704,154 @@ export const countries: Country[] = [
         emoji: "📚",
         famousBooks: ["The Haunting", "The Changeover", "The Great White Man-Eating Shark", "A Lion in the Meadow"],
         birthYear: "1936",
+      },
+    ],
+  },
+
+  // ── EUROPE (ADDITIONAL) ───────────────────────────────────
+  {
+    id: "russia",
+    name: "Russia",
+    emoji: "🇷🇺",
+    color: "story-lavender",
+    image: germanyImg,
+    description: "A vast land of deep forests, long winters, and magical folk tales — home to fearsome witches, firebirds, and brave heroes.",
+    lat: 61.5240,
+    lng: 105.3188,
+    stories: [
+      {
+        id: "baba-yaga",
+        title: "Baba Yaga",
+        summary: "Deep in the dark Russian forest lives Baba Yaga — a terrifying witch who flies in a mortar and pestle and lives in a hut that stands on chicken legs. She is a test for all who seek her: the foolish she eats, the brave and clever she helps. Her tales have haunted Russian children for centuries and inspired some of the world's greatest fantasy writing.",
+        origin: "Russia (Ancient Slavic)",
+        emoji: "🏚️",
+        moral: "Courage and cleverness can turn even the most fearsome encounter into a blessing.",
+        illustration: "https://picsum.photos/seed/babayaga/800/450",
+      },
+      {
+        id: "firebird",
+        title: "The Firebird",
+        summary: "A luminous bird of blazing light steals golden apples from a tsar's garden. When the tsar's youngest son Ivan sets out to catch it, he is drawn into a magical world of impossible tasks, enchanted horses, and the beautiful Tsarevna. With wisdom and a loyal horse by his side, Ivan must outwit the immortal Koschei — a sorcerer who cannot die because he has hidden his soul outside his body.",
+        origin: "Russia (Ancient)",
+        emoji: "🔥",
+        moral: "Even the smallest and least expected hero can achieve the impossible.",
+        illustration: "https://picsum.photos/seed/firebird/800/450",
+      },
+    ],
+    authors: [
+      {
+        id: "leo-tolstoy",
+        name: "Leo Tolstoy",
+        bio: "One of the greatest novelists in all of history, he wrote War and Peace and Anna Karenina — but also wrote beautiful short stories and fables for children and peasants. He believed that simple people often understood life better than the rich and powerful, and his folk-tale style stories carry deep moral wisdom.",
+        emoji: "📖",
+        famousBooks: ["War and Peace", "Anna Karenina", "The Death of Ivan Ilyich", "Childhood", "Fables and Folk Tales"],
+        birthYear: "1828",
+      },
+      {
+        id: "alexander-pushkin",
+        name: "Alexander Pushkin",
+        bio: "Russia's most beloved poet and storyteller, often called the father of modern Russian literature. He retold ancient Russian folk tales in magnificent verse — including The Tale of Tsar Saltan and The Tale of the Fisherman and the Fish. His words gave Russian fairy tales an immortal literary form that still enchants readers today.",
+        emoji: "🪶",
+        famousBooks: ["The Tale of Tsar Saltan", "Ruslan and Ludmila", "The Tale of the Fisherman and the Fish", "Eugene Onegin"],
+        birthYear: "1799",
+      },
+    ],
+  },
+  {
+    id: "norway",
+    name: "Norway",
+    emoji: "🇳🇴",
+    color: "story-sky",
+    image: ukImg,
+    description: "A land of fjords, northern lights, and ancient Norse myths where gods, giants, and trolls shaped the very world.",
+    lat: 60.4720,
+    lng: 8.4689,
+    stories: [
+      {
+        id: "norse-mythology",
+        title: "Norse Mythology",
+        summary: "In the beginning there was nothing but ice and fire — and from their meeting, the first giants were born. Odin, the one-eyed king of the gods, sacrificed himself on the world tree Yggdrasil to gain the secret of the runes. His son Thor swings the mighty hammer Mjölnir to protect humanity from giants. And Loki, the trickster, causes chaos and laughter in equal measure across the nine worlds.",
+        origin: "Norse / Scandinavia (Ancient)",
+        emoji: "⚡",
+        moral: "Wisdom requires sacrifice, and even the greatest gods have weaknesses.",
+        illustration: "https://picsum.photos/seed/norsemyth/800/450",
+      },
+      {
+        id: "norway-trolls",
+        title: "Trolls of Norway",
+        summary: "Norwegian trolls are unlike any other creatures in folklore — enormous, slow-witted, and dangerous. They lurk under bridges demanding tolls, guard mountains full of treasure, and turn to stone if caught in sunlight. But clever farmers, youngest sons, and quick-thinking goats have outsmarted them for centuries in tales collected by Asbjørnsen and Moe, Norway's great storytelling duo.",
+        origin: "Norway (Ancient folk tradition)",
+        emoji: "🧌",
+        moral: "Wits and courage will always outwit brute strength.",
+        illustration: "https://picsum.photos/seed/norwaytrolls/800/450",
+      },
+    ],
+    authors: [
+      {
+        id: "henrik-ibsen",
+        name: "Henrik Ibsen",
+        bio: "Norway's greatest playwright, whose works shook the foundations of European theatre. His play Peer Gynt, based on Norwegian folk tales, features trolls, mountain spirits, and a restless hero searching for his true self. Often called the father of modern drama, he believed stories should ask difficult questions about how people really live.",
+        emoji: "🎭",
+        famousBooks: ["Peer Gynt", "A Doll's House", "Hedda Gabler", "The Wild Duck", "Ghosts"],
+        birthYear: "1828",
+      },
+      {
+        id: "asbjornsen-moe",
+        name: "Asbjørnsen & Moe",
+        bio: "Peter Christen Asbjørnsen and Jørgen Moe were Norway's answer to the Brothers Grimm. They travelled across Norway in the 1830s and 40s collecting folk tales from farmers and fishermen, preserving stories about trolls, princesses, and clever youngest sons that would otherwise have been lost. Their collection is the foundation of Norwegian folk literature.",
+        emoji: "🪵",
+        famousBooks: ["Norwegian Folk Tales", "The Three Billy Goats Gruff", "East of the Sun and West of the Moon", "Boots and His Brothers"],
+        birthYear: "1812 & 1813",
+      },
+    ],
+  },
+
+  // ── MIDDLE EAST ───────────────────────────────────────────
+  {
+    id: "iran",
+    name: "Iran",
+    emoji: "🇮🇷",
+    color: "story-warm",
+    image: indiaImg,
+    description: "Ancient Persia — birthplace of epic poetry, mystical wisdom, and the greatest storyteller in history: Scheherazade.",
+    lat: 32.4279,
+    lng: 53.6880,
+    stories: [
+      {
+        id: "shahnameh",
+        title: "Shahnameh — The Book of Kings",
+        summary: "Written by the poet Ferdowsi over 30 years, the Shahnameh is the longest epic poem ever written by a single person — over 60,000 verses! It tells the history of Persia from the creation of the world to the Arab conquest, full of mythical heroes, fire-worshipping kings, dragons, and the greatest tragic duel in all literature: the warrior Rostam who unknowingly fights and kills his own son Sohrab.",
+        origin: "Persia / Iran (~1000 CE)",
+        emoji: "👑",
+        moral: "Even the greatest heroes are bound by fate — wisdom lies in how we face it.",
+        illustration: "https://picsum.photos/seed/shahnameh/800/450",
+      },
+      {
+        id: "thousand-nights",
+        title: "One Thousand and One Nights",
+        summary: "A cruel king swore to marry a new woman every night and execute her at dawn — until the brilliant Scheherazade volunteered to be his bride. Each night she told him a story so captivating that he could not bear to kill her before hearing the ending. Night after night, story inside story inside story, she wove tales of Sinbad the Sailor, Aladdin, Ali Baba, and countless others — until one thousand and one nights had passed and the king's heart was changed forever.",
+        origin: "Persia / Arabia (~9th century CE)",
+        emoji: "🌙",
+        moral: "A story told well is the most powerful force in the world.",
+        illustration: "https://picsum.photos/seed/thousandnights/800/450",
+      },
+    ],
+    authors: [
+      {
+        id: "rumi",
+        name: "Rumi",
+        bio: "Jalal ad-Din Rumi was a 13th-century Persian poet whose verses on love, loss, and the search for God have made him one of the best-selling poets in the world today. His masterwork the Masnavi — six books of spiritual poetry told through stories and fables — is called 'the Quran in Persian.' His words leap across centuries to touch the hearts of people of every background.",
+        emoji: "🌹",
+        famousBooks: ["The Masnavi", "Divan-e Shams-e Tabrizi", "Fihi Ma Fihi"],
+        birthYear: "1207",
+      },
+      {
+        id: "ferdowsi",
+        name: "Ferdowsi",
+        bio: "Hakim Abu'l-Qasim Ferdowsi dedicated thirty years of his life to writing the Shahnameh — the Book of Kings — to preserve the Persian language and history at a time when it was under threat. He received almost nothing for his work, yet his poem survived for over a thousand years and is still recited from memory across Iran, Afghanistan, and Tajikistan. A true hero of words.",
+        emoji: "📜",
+        famousBooks: ["Shahnameh (The Book of Kings)"],
+        birthYear: "940",
       },
     ],
   },

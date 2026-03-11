@@ -15,12 +15,16 @@ export default {
   	extend: {
   		fontFamily: {
   			display: [
-  				'Fredoka',
-  				'sans-serif'
+  				'Playfair Display',
+  				'ui-serif',
+  				'Georgia',
+  				'serif'
   			],
   			body: [
-  				'Nunito',
-  				'sans-serif'
+  				'Lora',
+  				'ui-serif',
+  				'Georgia',
+  				'serif'
   			],
   			sans: [
   				'Inter',

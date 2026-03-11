@@ -2323,4 +2323,364 @@ export const tales: Tale[] = [
       },
     ],
   },
+
+  // ── baba-yaga ─────────────────────────────────────────────
+  {
+    id: "baba-yaga-vasilisa",
+    storyId: "baba-yaga",
+    title: "Vasilisa the Beautiful",
+    emoji: "🪆",
+    content: "Vasilisa was a kind girl whose dying mother gave her a tiny wooden doll. 'Feed her a little,' said her mother, 'and she will help you in times of trouble.' When Vasilisa's cruel stepmother sent her alone into the dark forest to fetch fire from the terrifying witch Baba Yaga, the little doll guided her safely along the path. At Baba Yaga's hut on chicken legs, Vasilisa worked hard and answered all the witch's riddles honestly. Impressed by her goodness, Baba Yaga gave her a skull with burning eyes that carried fire home — and when Vasilisa brought it to her stepmother, the skull's gaze burned the wicked woman to ash.",
+    pages: [
+      "When Vasilisa was very small, her mother fell gravely ill. Before she died, she pressed a tiny carved wooden doll into Vasilisa's hands. 'Feed her a little bread each day,' she whispered, 'and she will help you whenever you are in need.' Years passed. Vasilisa grew kind and beautiful, but her new stepmother and stepsisters were jealous and cruel.",
+      "One dark night, the stepmother put out every light in the house and sent Vasilisa alone into the deep forest to fetch fire from Baba Yaga — the terrifying bone-legged witch. Vasilisa was frightened, but her little doll glowed warm in her pocket and guided her safely along the path, step by step, until the terrible hut on chicken legs appeared before her.",
+      "Vasilisa worked hard for Baba Yaga — cooking, cleaning, and sorting grain from sand. She answered every riddle truthfully and never complained. Baba Yaga was so impressed she gave Vasilisa a glowing skull on a stick, its eyes burning with firelight. When Vasilisa carried it home, the skull's fiery gaze fell upon her wicked stepmother — and burned away every last drop of her cruelty forever. 🪆",
+    ],
+    questions: [
+      {
+        question: "What did Vasilisa's dying mother give her?",
+        options: ["A golden ring", "A tiny wooden doll", "A map of the forest"],
+        correctIndex: 1,
+      },
+      {
+        question: "Why did the stepmother send Vasilisa to Baba Yaga?",
+        options: ["To learn magic", "To fetch fire for the house", "To bring back treasure"],
+        correctIndex: 1,
+      },
+      {
+        question: "What gift did Baba Yaga give Vasilisa for her hard work?",
+        options: ["A bag of gold coins", "A magical horse", "A glowing skull that carried fire"],
+        correctIndex: 2,
+      },
+    ],
+  },
+  {
+    id: "baba-yaga-ivan",
+    storyId: "baba-yaga",
+    title: "Ivan and the Hut on Chicken Legs",
+    emoji: "🐔",
+    content: "Ivan was lost in the enchanted forest when he stumbled upon a hut spinning slowly on two enormous chicken legs. Inside sat Baba Yaga, her nose touching the ceiling, her teeth like iron. She sniffed the air and cried, 'I smell Russian bones!' But Ivan was bold. 'Before you eat me, old woman, give me food and drink and a warm place to sleep — as any good host would!' Taken aback by his boldness, Baba Yaga fed him and listened to his quest. She gave him a magical ball of yarn to lead his way and told him exactly what dangers lay ahead. Ivan bowed politely and walked on — and the yarn led him true.",
+    pages: [
+      "Ivan had been walking through the enchanted forest for three days when he heard a strange creaking sound. Around a bend in the path stood the strangest house he had ever seen — a small hut perched on two enormous chicken legs, slowly turning in a circle. The door had no handle, the windows had no glass, and from inside came the sound of someone muttering.",
+      "'Hut, hut, turn your back to the forest and your front to me!' called Ivan. The hut gave a great shudder, the chicken legs scraped the earth, and the door swung open. Inside sat Baba Yaga — bony, terrible, with teeth like iron and a nose that nearly touched the ceiling. 'I smell Russian bones!' she shrieked. But Ivan stood straight. 'Before you eat me, grandmother, give me food and drink and a bed — as any proper host would!' Baba Yaga blinked. No one had ever called her grandmother before.",
+      "Something softened in the old witch. She fed Ivan black bread and hot soup, she gave him a warm corner to sleep, and in the morning she handed him a ball of magic yarn. 'Throw it before you and follow where it rolls,' she said. 'It will lead you true.' Ivan bowed, thanked her, and walked on. The yarn led him exactly where he needed to go — and all because he had the courage to be polite to a witch. 🐔",
+    ],
+    questions: [
+      {
+        question: "What was unusual about Baba Yaga's hut?",
+        options: ["It was made of candy", "It stood on two enormous chicken legs", "It floated above the ground"],
+        correctIndex: 1,
+      },
+      {
+        question: "How did Ivan stop Baba Yaga from eating him?",
+        options: ["He cast a spell on her", "He challenged her to a riddle contest", "He boldly asked her to be a proper host and give him food first"],
+        correctIndex: 2,
+      },
+      {
+        question: "What did Baba Yaga give Ivan to help him on his journey?",
+        options: ["A sword of fire", "A magical ball of yarn", "A flying horse"],
+        correctIndex: 1,
+      },
+    ],
+  },
+
+  // ── firebird ──────────────────────────────────────────────
+  {
+    id: "firebird-ivan",
+    storyId: "firebird",
+    title: "Ivan and the Firebird",
+    emoji: "🔥",
+    content: "Every night a radiant bird with feathers of living flame swooped into the Tsar's garden and stole his golden apples. The Tsar sent his sons to catch it. The oldest two fell asleep on watch. But youngest Ivan stayed awake and grabbed a tail feather as the Firebird flew away. The feather glowed like a torch. The Tsar sent Ivan to capture the Firebird itself, and then to find the beautiful Tsarevna Elena, and then to defeat the immortal Koschei. Each task seemed impossible — but a grateful grey wolf appeared to help Ivan, for the young prince had once spared its life in the forest.",
+    pages: [
+      "The Tsar's garden held a tree of pure gold, and every night its golden apples were stolen by a creature of blazing light — the Firebird. The Tsar sent his eldest son to guard it. He fell asleep before midnight. The second son was sent — he too slept through the theft. On the third night, youngest Ivan sat in the cold and watched. At midnight the garden blazed like sunrise as the Firebird descended.",
+      "Ivan lunged and caught one glowing tail feather before the bird wrenched free and vanished into the sky. The feather lit the room like a torch. The Tsar was grateful — but not satisfied. 'You will catch the Firebird itself,' he commanded, 'or you will never return to my kingdom.' Ivan set off into the world, not knowing which way to go.",
+      "In the deep forest, Ivan encountered a grey wolf and raised his sword — but then lowered it and walked away. The wolf was grateful. 'I will repay your mercy,' it said, and ran to his side. Together they outwitted the immortal Koschei, rescued the Tsarevna Elena, and captured the Firebird in a cage of starlight. Ivan returned home in triumph, and the wolf slipped back into the forest — its debt repaid. 🔥",
+    ],
+    questions: [
+      {
+        question: "What was the Firebird stealing from the Tsar's garden?",
+        options: ["Silver coins", "Golden apples", "Magic seeds"],
+        correctIndex: 1,
+      },
+      {
+        question: "Why did the grey wolf choose to help Ivan?",
+        options: ["Ivan gave it food", "Ivan had spared its life in the forest", "The wolf was under a magic spell to serve him"],
+        correctIndex: 1,
+      },
+      {
+        question: "What made Koschei so hard to defeat?",
+        options: ["He could fly faster than any horse", "He was immortal because he had hidden his soul outside his body", "He had an army of enchanted soldiers"],
+        correctIndex: 1,
+      },
+    ],
+  },
+  {
+    id: "firebird-golden-feather",
+    storyId: "firebird",
+    title: "The Golden Feather",
+    emoji: "🪶",
+    content: "A woodcutter found a single feather burning gold in the snow and brought it to the Tsar, who declared that whoever brought him the whole bird would receive half the kingdom. Three brothers set out. The oldest two stopped at every tavern and forgot their quest. The youngest, Aleksei, shared his last crust of bread with an old woman on the road, who revealed herself as a forest spirit. She gave him a whistle: blow it once to calm any creature, twice to make it sleep, three times to bind it. Using the whistle, Aleksei tamed the Firebird gently, brought it home unharmed, and returned it to the wild the very next day — having first asked the Tsar whether he truly needed it, or only thought he did.",
+    pages: [
+      "A single feather lay in the snow of the forest, glowing warm gold like a coal that would not die. The woodcutter who found it carried it to the Tsar, who held it up in wonder. 'Whoever brings me the whole bird,' declared the Tsar, 'shall receive half my kingdom.' Three brothers set off the very next morning.",
+      "The two elder brothers stopped at the first tavern for a drink, and then another, and gradually forgot all about the Firebird. But youngest Aleksei walked on through hunger and cold. On the third day he met a ragged old woman sitting in the snow. He gave her the last crust in his pack. She smiled — and was suddenly tall and bright and not old at all. She pressed a small wooden whistle into his hand. 'One blow to calm, two to sleep, three to bind,' she said, and was gone.",
+      "Aleksei found the Firebird at dawn, blazing like a second sun. He blew the whistle once — the bird stilled. He blew it twice — the bird settled gently into his arms and closed its eyes. He carried it to the Tsar. But then he asked a question no one had thought to ask: 'Your Majesty — do you truly need this bird, or only want it because it is beautiful and rare?' The Tsar thought for a long time. Then he laughed. 'Let it go,' he said. Aleksei released the Firebird into the sky, and the kingdom was brighter for it. 🪶",
+    ],
+    questions: [
+      {
+        question: "What reward did the Tsar offer for capturing the Firebird?",
+        options: ["A bag of gold", "Half the kingdom", "The hand of his daughter in marriage"],
+        correctIndex: 1,
+      },
+      {
+        question: "What did the whistle do when blown three times?",
+        options: ["Called the Firebird to land", "Bound a creature in place", "Opened a magical door"],
+        correctIndex: 1,
+      },
+      {
+        question: "What did Aleksei do with the Firebird at the end?",
+        options: ["Kept it in a golden cage", "Traded it for treasure", "Released it back into the sky"],
+        correctIndex: 2,
+      },
+    ],
+  },
+
+  // ── norse-mythology ───────────────────────────────────────
+  {
+    id: "thor-hammer",
+    storyId: "norse-mythology",
+    title: "How Thor Got His Hammer Back",
+    emoji: "🔨",
+    content: "One morning Thor woke to find Mjölnir — his great hammer — stolen. Without it the gods were helpless against the giants. Loki discovered that the frost giant Thrym had taken it and buried it deep underground. Thrym's price for returning it: the goddess Freyja as his bride. Freyja refused furiously. So Loki hatched a plan — Thor himself would dress as the bride! Disguised in a wedding gown, with Loki as the bridesmaid, Thor sat at the giants' feast. When Thrym placed Mjölnir on the 'bride's' lap to bless the marriage, Thor's fingers closed around the handle. He rose to his full height, swung the hammer, and not one giant in the hall survived.",
+    pages: [
+      "Thor woke before dawn and reached instinctively for Mjölnir — his great war hammer, gift of the dwarves, the weapon that held back the frost giants from Asgard. His hand found nothing. He sat up. He looked. He searched the entire hall. The hammer was gone. Without it, the gods were defenceless. All of Asgard went pale with fear.",
+      "Loki investigated and returned with bad news — and worse news. The bad news: the hammer had been stolen by Thrym, king of the frost giants. The worse news: Thrym's price for returning it was the goddess Freyja herself as his bride. Freyja was so furious the mountains shook. Then Loki smiled. 'I have a plan,' he said. Everyone groaned. Loki's plans were either brilliant or catastrophic. Sometimes both.",
+      "Thor sat in the great hall of the giants, dressed in a bridal gown with a veil over his red beard, Loki giggling at his side dressed as the bridesmaid. When Thrym placed Mjölnir on the 'bride's' lap to bless the wedding, Thor's hand closed around the handle. He stood to his full, enormous height. The veil fell. Thrym had just enough time to say 'oh' before Thor's hammer sang through the air. Every giant in the hall was defeated — and Mjölnir came home. 🔨",
+    ],
+    questions: [
+      {
+        question: "Who stole Thor's hammer Mjölnir?",
+        options: ["Loki the trickster", "Thrym, the frost giant king", "The dwarves who made it"],
+        correctIndex: 1,
+      },
+      {
+        question: "What was Thrym's price for returning the hammer?",
+        options: ["All of Asgard's gold", "The goddess Freyja as his bride", "Thor's belt of strength"],
+        correctIndex: 1,
+      },
+      {
+        question: "How did Thor get close enough to Thrym to reclaim Mjölnir?",
+        options: ["He snuck into the giant's hall in disguise at night", "He disguised himself as Freyja the bride", "He challenged Thrym to a wrestling match"],
+        correctIndex: 1,
+      },
+    ],
+  },
+  {
+    id: "odin-runes",
+    storyId: "norse-mythology",
+    title: "Odin and the Runes",
+    emoji: "🌳",
+    content: "Odin, king of the Norse gods, knew that wisdom was the greatest power in all the nine worlds — but the secret of the runes was locked away in the deep roots of Yggdrasil, the world tree. To earn them, Odin hung himself from a branch of the great tree for nine days and nine nights, wounded by his own spear, with no food or drink, staring into the dark abyss below. On the ninth night, the runes blazed up from the depths and Odin seized them with a cry. He paid with one eye for another gift of wisdom — a drink from the well of Mimir, where all knowledge was stored. Odin gave much, but he knew: nothing worth having is free.",
+    pages: [
+      "Odin ruled the gods of Asgard from his high seat Hlidskjalf, from which he could see all nine worlds. He had great power — but Odin always hungered for more wisdom. He knew that deep in the roots of Yggdrasil, the great world tree that held all of existence together, lay the secret of the runes — symbols of power that could bend reality itself. But to reach them, the price was terrible.",
+      "Odin took his spear Gungnir and wounded himself with it. Then he climbed the world tree and hung from its branches, staring downward into the void — no food, no water, for nine days and nine days. The other gods watched in silence, unable to help him. Night after night the wind screamed through the branches. Odin did not let go.",
+      "On the ninth night, shapes blazed up from the deep roots below him — the runes, ancient symbols of immense power. Odin reached down with the last of his strength and seized them. He fell from the tree, alive, changed forever. He could now write, cast spells, read fate, and unlock the secrets of the dead. Later he gave one of his eyes to drink from Mimir's well of all-knowledge. He never regretted either sacrifice. 🌳",
+    ],
+    questions: [
+      {
+        question: "What did Odin sacrifice to gain the secret of the runes?",
+        options: ["His golden throne", "Nine days hanging from the world tree, wounded and without food", "His magic ravens Huginn and Muninn"],
+        correctIndex: 1,
+      },
+      {
+        question: "What is Yggdrasil?",
+        options: ["Odin's magical spear", "The great world tree that holds the nine worlds together", "The land of the dead"],
+        correctIndex: 1,
+      },
+      {
+        question: "What did Odin give up to drink from Mimir's well of knowledge?",
+        options: ["His hammer", "One of his eyes", "His immortality for one year"],
+        correctIndex: 1,
+      },
+    ],
+  },
+
+  // ── norway-trolls ─────────────────────────────────────────
+  {
+    id: "three-billy-goats",
+    storyId: "norway-trolls",
+    title: "The Three Billy Goats Gruff",
+    emoji: "🐐",
+    content: "On one side of a rushing river grew the sweetest, greenest grass in all of Norway. Three Billy Goats Gruff — small, medium, and large — longed to cross the bridge to reach it. But under the bridge lived a great ugly troll with eyes as big as saucers and a nose as long as a poker, who ate anyone who tried to cross. The small goat talked the troll out of eating him by promising a bigger meal was coming. The medium goat did the same. But when the largest billy goat stepped onto the bridge and the whole valley shook, he knocked the troll clean off the bridge with his great horns, into the rushing river, never to be seen again.",
+    pages: [
+      "In a valley in Norway there was a bridge over a roaring river, and beyond the bridge grew the greenest, sweetest grass you could ever imagine. Three brothers — the Billy Goats Gruff — were very hungry and longed to cross. But under the bridge lived a horrible troll, enormous and ugly, with eyes like dinner plates and a voice like a landslide. He ate every creature that tried to cross.",
+      "The smallest Billy Goat Gruff stepped onto the bridge. TRIP TRAP TRIP TRAP! 'Who's that tripping over my bridge?' roared the troll. 'Only I, the smallest Billy Goat Gruff,' said the goat. 'I'm too small to be worth eating — wait for my bigger brother, he'll make a much better meal!' The troll grumbled but let him pass. The middle goat crossed the same way, promising the troll to wait for an even larger goat. The troll agreed again.",
+      "Then the great big Billy Goat Gruff stepped onto the bridge. TRIP TRAP TRIP TRAP — the planks shook, the river trembled, and the troll leapt up certain of his finest feast. The great goat lowered his enormous horns, charged at full speed, and sent the troll spinning through the air and down into the river with an enormous splash. The troll was never seen again. And the three Billy Goats Gruff ate green grass on the hillside happily for the rest of their days. 🐐",
+    ],
+    questions: [
+      {
+        question: "What did the smallest Billy Goat tell the troll to stop it from eating him?",
+        options: ["That he tasted terrible", "That a bigger goat was coming who would make a better meal", "That he had a magic horn that would curse the troll"],
+        correctIndex: 1,
+      },
+      {
+        question: "What happened to the troll at the end of the story?",
+        options: ["He ran away into the mountains", "The largest billy goat knocked him into the river with his horns", "He shrank to the size of a mouse"],
+        correctIndex: 1,
+      },
+      {
+        question: "What were the three goats trying to reach?",
+        options: ["A golden apple tree on the other side", "The sweet green grass across the river", "A warm barn for the winter"],
+        correctIndex: 1,
+      },
+    ],
+  },
+  {
+    id: "east-sun-west-moon",
+    storyId: "norway-trolls",
+    title: "East of the Sun and West of the Moon",
+    emoji: "🌙",
+    content: "A great white bear came to a poor farmer's house and offered wealth in exchange for his youngest daughter. The girl agreed and rode on the bear's back to an enchanted castle. Each night in the darkness a man slept beside her, but she could never see his face. One night she lit a candle — and saw the most handsome prince, released from a troll curse by day in the form of a bear but enchanted by night. Three drops of wax fell on his shirt. The curse was broken partway but not fully. The prince vanished, taken to a castle east of the sun and west of the moon. The girl walked to the ends of the earth to find him, questioned the four winds themselves, and at last broke the curse entirely.",
+    pages: [
+      "A great white bear stood at the farmer's door in the middle of winter. 'Give me your youngest daughter,' said the bear, 'and your family will never go hungry again.' The farmer was poor and the winter was long. His youngest daughter, brave and kind, said she would go. She climbed onto the white bear's broad back and they rode into the deep cold forest and beyond.",
+      "In the enchanted castle, she was given everything she could want. But each night in the darkness, a man lay beside her, and no matter how she listened, he was gone before dawn. One night, burning with curiosity, she lit a small candle — and by its light saw a young man of such beauty she caught her breath. He was a prince, held under a troll queen's curse. But three drops of hot wax fell on his white shirt. He woke with a cry and was gone — taken back to a castle that lay east of the sun and west of the moon.",
+      "The girl set out on a journey to the end of the world. She wore out three pairs of iron shoes walking. She questioned the East Wind, the West Wind, the South Wind, and at last the great North Wind, who carried her on his back to the very castle. There she outwitted the long-nosed troll princess and washed the wax from the white shirt where the princess could not. The curse broke. The troll castle crumbled, and the prince and the girl walked out together into the light. 🌙",
+    ],
+    questions: [
+      {
+        question: "What form did the enchanted prince take during the day?",
+        options: ["A great wolf", "A white bear", "A golden eagle"],
+        correctIndex: 1,
+      },
+      {
+        question: "How did the girl accidentally break part of the curse the wrong way?",
+        options: ["She spoke the prince's name aloud", "Three drops of candle wax fell on his shirt", "She opened the forbidden door of the castle"],
+        correctIndex: 1,
+      },
+      {
+        question: "Who finally carried the girl to the castle east of the sun and west of the moon?",
+        options: ["The East Wind", "A magical reindeer", "The North Wind"],
+        correctIndex: 2,
+      },
+    ],
+  },
+
+  // ── shahnameh ─────────────────────────────────────────────
+  {
+    id: "rostam-sohrab",
+    storyId: "shahnameh",
+    title: "Rostam and Sohrab",
+    emoji: "⚔️",
+    content: "Rostam was the greatest warrior in all of Persia — mighty, brave, and beloved. Years before, on a journey, he had loved a princess and left before knowing she was expecting his child. The boy was born and named Sohrab, and he grew to be a warrior of terrifying strength, searching the world for the father he had never met. By a cruel twist of fate, the two met on opposite sides of a battlefield. They fought three days of heroic combat, each sensing something in the other but not knowing what. On the third day, Rostam dealt the mortal blow — and then found the amulet his son wore, the amulet he himself had sent. Nothing in all of Persian literature is more heartbreaking.",
+    pages: [
+      "Rostam was the greatest hero Persia had ever known. Songs were sung of his battles. Children were named after him. His horse Rakhsh was the finest in the world. But Rostam had a secret grief — long ago he had loved a princess in a distant land and ridden away not knowing she carried his child. Across the years, a boy named Sohrab had grown up burning to find his legendary father.",
+      "Sohrab became a warrior of extraordinary strength and rode at the head of an army searching for Rostam. War brought them to opposite sides of a battlefield. Each heard of the other's deeds and each felt a strange pull — a recognition they could not name. They agreed to single combat. Three days they fought in the dust, and each day the battle was even. On each evening they parted with a strange sadness.",
+      "On the third day, Rostam found an opening and drove his spear home. As Sohrab fell, he said, 'My father Rostam will avenge my death.' Rostam went cold. He tore open Sohrab's armour and found the amulet — the amulet he had left for his son before he ever knew one existed. The world's greatest warrior collapsed over his son's body and wept. In all the Shahnameh's sixty thousand verses, no moment is more still, or more sorrowful. ⚔️",
+    ],
+    questions: [
+      {
+        question: "Why had Rostam never met his son Sohrab?",
+        options: ["He had abandoned them deliberately", "He had left before knowing the princess was expecting his child", "Sohrab had been hidden from him by an enemy"],
+        correctIndex: 1,
+      },
+      {
+        question: "How did Rostam discover that Sohrab was his son?",
+        options: ["Sohrab told him his mother's name", "He found the amulet he had left for his child on Sohrab's body", "A prophet had warned him beforehand"],
+        correctIndex: 1,
+      },
+      {
+        question: "How long did Rostam and Sohrab's single combat last?",
+        options: ["One day", "Two days", "Three days"],
+        correctIndex: 2,
+      },
+    ],
+  },
+  {
+    id: "zal-simurgh",
+    storyId: "shahnameh",
+    title: "Zal and the Simurgh",
+    emoji: "🦅",
+    content: "Zal was born with hair as white as snow, and his father the great warrior Sam was so ashamed of the strange child that he abandoned him on the slopes of the Alborz Mountains to die. But the magical Simurgh — a vast, ancient bird of paradise who had lived since the beginning of time — found the baby and raised him in her nest at the top of the world's highest peak. Zal grew strong and wise, and when he was full-grown he returned to the human world. The Simurgh gave him three of her feathers: 'When you are in desperate need, burn one. I will come.' Years later, when his wife lay near death in childbirth, Zal burned a feather — and the Simurgh came and saved them both. Their child was Rostam.",
+    pages: [
+      "Sam was the mightiest warrior in Persia, and he wept with shame when his son was born — for the boy's hair was as white as frost, white as ash, white as old bones. Such a child must be cursed, the people whispered. Sam hardened his heart and carried the baby to the wild slopes of the Alborz Mountains, placing him on a cold rock and riding away without looking back.",
+      "High above in a nest of gold, the ancient Simurgh heard a sound — so small, so human. She spread her vast wings and descended. The bird was enormous, older than memory, with feathers the colours of dawn. She found the white-haired baby alive and crying and carried him gently up to her nest. She named him Zal and raised him alongside her own young, teaching him the wisdom of the sky and the patience of mountains.",
+      "When Zal was grown, the Simurgh told him it was time to return to the world of men. She gave him three of her own feathers. 'Burn one whenever you face the impossible, and I will come.' Zal returned to Persia, found his father, and became a great lord. The day his wife was dying in childbirth, he burned the first feather. The Simurgh arrived on a rush of wind and saved both mother and child. The child born that night — the child of miracle — was Rostam. 🦅",
+    ],
+    questions: [
+      {
+        question: "Why did Sam abandon his baby son Zal?",
+        options: ["He was too poor to raise a child", "He was ashamed because Zal was born with white hair", "A prophecy told him the child would be dangerous"],
+        correctIndex: 1,
+      },
+      {
+        question: "What gift did the Simurgh give Zal when he returned to the world?",
+        options: ["A magical sword", "Three of her feathers to call her in times of need", "The ability to speak with all animals"],
+        correctIndex: 1,
+      },
+      {
+        question: "Who was the child born the night Zal burned the first feather?",
+        options: ["Sohrab", "Rostam", "Sam"],
+        correctIndex: 1,
+      },
+    ],
+  },
+
+  // ── thousand-nights ───────────────────────────────────────
+  {
+    id: "scheherazade",
+    storyId: "thousand-nights",
+    title: "Scheherazade and the King",
+    emoji: "🌙",
+    content: "King Shahryar had been betrayed and grew so bitter that he swore to marry a new woman every night and execute her at dawn — so she could never betray him. The kingdom lived in terror. When it was the vizier's turn to find a bride, his own daughter Scheherazade volunteered. 'I have a plan,' she told her sister. That night, she began a story so captivating, so full of twists and wonders, that when dawn came the king could not bear to end it. 'One more night,' he said. And so it went, for one thousand and one nights, until the king's heart was healed and he set aside his cruelty forever.",
+    pages: [
+      "King Shahryar had once been kind, but betrayal had turned his heart to stone. He made a terrible vow: he would marry a woman each evening and have her executed at dawn, before she could ever betray him. Night after night, the kingdom wept. The vizier — the king's closest advisor — was ordered to find new brides, and he trembled every time. His own daughter Scheherazade saw the grief in his eyes and said, 'Father. Let me go to the king.'",
+      "'I have a plan,' she told her younger sister Dunyazad. 'Come with me, and at midnight ask me to tell a story.' That night, as the palace fell quiet and dawn drew closer, Dunyazad said softly, 'Sister — won't you tell us a tale?' Scheherazade began. She wove a story of merchants and genies, of hidden treasure and magical horses, of adventures so vivid the king sat up and his eyes grew bright. When the first pale light appeared at the window, Scheherazade paused — right at the most thrilling moment.",
+      "The king could not order her execution. 'What happens next?' he demanded. 'Tomorrow night,' said Scheherazade calmly, 'if you wish to hear it.' And so it went — for one thousand and one nights. Sinbad sailed his seven voyages. Ali Baba outwitted the forty thieves. Aladdin discovered his lamp. Story after story after story, and with each one, a little of the king's hardness softened. On the one thousand and first night, he told Scheherazade she would live — and that he had never loved anyone more. 🌙",
+    ],
+    questions: [
+      {
+        question: "Why did King Shahryar make his terrible vow?",
+        options: ["He was bored and wanted entertainment each night", "He had been betrayed and became bitterly afraid of being hurt again", "A sorcerer had placed a curse on him"],
+        correctIndex: 1,
+      },
+      {
+        question: "What was Scheherazade's strategy to survive each night?",
+        options: ["She flattered the king with compliments until he forgot his vow", "She ended each story at the most thrilling moment so the king had to let her live to hear the ending", "She had her sister sneak a sleeping potion into the king's wine"],
+        correctIndex: 1,
+      },
+      {
+        question: "How many nights did Scheherazade tell stories?",
+        options: ["Seven hundred nights", "One thousand nights", "One thousand and one nights"],
+        correctIndex: 2,
+      },
+    ],
+  },
+  {
+    id: "sinbad-voyage",
+    storyId: "thousand-nights",
+    title: "Sinbad's First Voyage",
+    emoji: "⛵",
+    content: "Sinbad the Sailor was born rich, spent his fortune, and put to sea to restore it. On his first voyage, the ship anchored at what seemed to be a small, pleasant island. The sailors lit fires and began to cook. Then the island moved. It was a whale — the largest creature alive — who had slept so long that soil and trees had grown on its back. The fires had woken it. It dove. Every man scrambled for the ship. Sinbad was left behind, clinging to a wooden tub, tossed on the ocean for three days and nights until a wave cast him up on the shore of a magical island, where a king's mare had just given birth to a sea horse — and where fortune would begin to turn.",
+    pages: [
+      "In Baghdad there lived a porter named Hindbad, poor and envious, who once complained bitterly about the unfairness of fate outside the gate of a magnificent mansion. The owner of the mansion called him inside. 'I am Sinbad the Sailor,' said the old man, 'and I was not always rich. Let me tell you how I earned every coin.' He poured wine and began his tale.",
+      "Sinbad had inherited a fortune and spent every last dirham on feasting and friends. When it was gone, he loaded a ship with trade goods and set out to sea. For many days they sailed in fair weather until they sighted a green and pleasant island. They anchored, went ashore, lit fires, and started cooking. Then — very slowly — the island sank. It was not an island at all. It was an enormous whale, ancient as the deep sea, who had slept so long that soil and trees had grown on its back. The fires had finally woken it. With a tremendous lurch, it dove beneath the waves.",
+      "The ship rowed desperately away. Sinbad clung to a wooden washtub as the ocean swallowed everything around him. For three days and three nights he drifted, praying, half-mad with thirst. Then a great wave picked him up and threw him gently — almost kindly — onto a shore of soft grass. He lay there breathing. He had nothing. But he was alive. And for Sinbad the Sailor, that was always enough to begin again. ⛵",
+    ],
+    questions: [
+      {
+        question: "What had Sinbad done with the fortune he inherited?",
+        options: ["Invested it in ships and trade", "Spent it all on feasting and friends", "Given it away to the poor"],
+        correctIndex: 1,
+      },
+      {
+        question: "What did the sailors mistake for a small island?",
+        options: ["A sandbar covered in seaweed", "An ancient whale who had slept so long trees grew on its back", "A floating garden from a sunken city"],
+        correctIndex: 1,
+      },
+      {
+        question: "What kept Sinbad afloat after the whale dove beneath the waves?",
+        options: ["A piece of the ship's mast", "A wooden washtub he grabbed as the island sank", "A magical net thrown by a sea spirit"],
+        correctIndex: 1,
+      },
+    ],
+  },
 ];

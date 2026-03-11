@@ -1,6 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Clock, BookOpen, ChevronRight, CheckCircle } from "lucide-react";
+import { X, Clock, ChevronRight, CheckCircle, ExternalLink } from "lucide-react";
 import type { Country, Story, Author } from "@/data/stories";
+
+const getEasonLink = (query: string) =>
+  `https://www.easons.com/search?q=${encodeURIComponent(query)}`;
 
 interface StoryDrawerProps {
   country: Country | null;
@@ -38,9 +41,9 @@ export default function StoryDrawer({ country, onClose, onStoryClick, onAuthorCl
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="absolute bottom-0 left-0 right-0 z-50 max-h-[75vh] flex flex-col"
+            className="absolute bottom-0 left-0 right-0 z-50 max-h-[60vh] md:max-h-[75vh] flex flex-col"
           >
-            <div className="bg-card/95 backdrop-blur-xl rounded-t-3xl border-t border-x border-border/50 shadow-2xl flex flex-col max-h-[75vh]">
+            <div className="bg-card/95 backdrop-blur-xl rounded-t-3xl border-t border-x border-border/50 shadow-2xl flex flex-col max-h-[60vh] md:max-h-[75vh]">
               {/* Drag handle */}
               <div className="flex justify-center pt-3 pb-1">
                 <div className="w-10 h-1 rounded-full bg-muted-foreground/20" />
@@ -143,24 +146,37 @@ function StoryListItem({ story, index, isRead, onClick }: { story: Story; index:
 }
 
 function AuthorListItem({ author, index, onClick }: { author: Author; index: number; onClick: () => void }) {
+  const easonHref = getEasonLink(author.name);
+
   return (
-    <motion.button
+    <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.15 + index * 0.05 }}
-      onClick={onClick}
-      className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-muted/20 transition-colors text-left group"
+      className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/20 transition-colors group"
     >
       <span className="text-2xl flex-shrink-0">{author.emoji}</span>
       <div className="flex-1 min-w-0">
-        <h4 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-          {author.name}
-        </h4>
-        <p className="text-xs text-muted-foreground mt-0.5 truncate">
-          {author.famousBooks.slice(0, 2).join(", ")}
-        </p>
+        <button onClick={onClick} className="text-left w-full">
+          <h4 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+            {author.name}
+          </h4>
+          <p className="text-xs text-muted-foreground mt-0.5 truncate">
+            {author.famousBooks.slice(0, 2).join(", ")}
+          </p>
+        </button>
+        <a
+            href={easonHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1 mt-1.5 text-[10px] text-muted-foreground border border-border/50 px-2 py-0.5 rounded-full hover:text-foreground hover:border-foreground/30 transition-colors font-body"
+          >
+            <ExternalLink className="w-2.5 h-2.5" />
+            Find on Eason
+          </a>
       </div>
       <ChevronRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary transition-colors flex-shrink-0" />
-    </motion.button>
+    </motion.div>
   );
 }

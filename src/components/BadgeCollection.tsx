@@ -18,10 +18,10 @@ export default function BadgeCollection({ unlockedCountries, talesCompleted, tot
       className="bg-card rounded-3xl p-6 border border-border"
     >
       <h3 className="font-display text-lg font-bold text-foreground mb-1">
-        🏅 My Badges
+        🛂 My Passport
       </h3>
       <p className="text-sm text-muted-foreground mb-4">
-        {unlockedCountries.length} / {countries.length} countries mastered • {totalStories} stories read
+        {unlockedCountries.length} / {countries.length} countries explored • {talesCompleted.length} stories read
       </p>
       <div className="flex flex-wrap gap-3">
         {countries.map((country) => {

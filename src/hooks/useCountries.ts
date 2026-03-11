@@ -72,7 +72,9 @@ async function fetchCountries(): Promise<Country[]> {
         origin: s.origin as string,
         emoji: s.emoji as string,
         moral: (s.moral as string | null) ?? undefined,
-        illustration: illustrationImages[s.illustration_key as string] ?? undefined,
+        illustration: (s.illustration_key as string)?.startsWith("https://")
+          ? (s.illustration_key as string)
+          : illustrationImages[s.illustration_key as string] ?? undefined,
       }));
 
     const authors = ((c.authors as any[]) ?? [])

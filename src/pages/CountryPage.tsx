@@ -86,7 +86,7 @@ export default function CountryPage() {
         </div>
 
         <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
-          <h2 className="text-xs font-display font-semibold text-muted-foreground uppercase tracking-wider mb-3">Stories</h2>
+          <h2 className="text-xs font-display font-semibold text-muted-foreground uppercase tracking-wider mb-3">Collections</h2>
           <div className="grid gap-3">
             {country.stories.map((story, i) => (
               <StoryCard

@@ -21,14 +21,15 @@ interface GlobeMarkerProps {
   name: string;
   onClick: () => void;
   occludeRef: React.RefObject<THREE.Mesh>;
+  drawerOpen: boolean;
 }
 
-function GlobeMarker({ lat, lng, emoji, name, onClick, occludeRef }: GlobeMarkerProps) {
+function GlobeMarker({ lat, lng, emoji, name, onClick, occludeRef, drawerOpen }: GlobeMarkerProps) {
   const position = useMemo(() => latLngToVector3(lat, lng, 2.08), [lat, lng]);
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Html position={position} center distanceFactor={8} occlude={[occludeRef]}>
+    <Html position={position} center distanceFactor={8} occlude={[occludeRef]} zIndexRange={drawerOpen ? [0, 0] : [16777271, 0]}>
       <button
         onClick={onClick}
         onMouseEnter={() => setHovered(true)}
@@ -67,7 +68,7 @@ function GlobeMarker({ lat, lng, emoji, name, onClick, occludeRef }: GlobeMarker
             padding: "2px 8px",
             borderRadius: "8px",
             whiteSpace: "nowrap",
-            fontFamily: "'Fredoka', sans-serif",
+            fontFamily: "'Playfair Display', serif",
             boxShadow: "0 2px 8px rgba(59,130,246,0.2)",
             opacity: hovered ? 1 : 0,
             transition: "opacity 0.2s ease",
@@ -117,8 +118,20 @@ function ResponsiveCamera() {
   useMemo(() => {
     const cam = camera as THREE.PerspectiveCamera;
     const aspect = size.width / size.height;
-    cam.position.z = aspect < 0.7 ? 6.5 : aspect < 1 ? 5.8 : 5.2;
-    cam.fov = aspect < 0.7 ? 50 : 45;
+    // Portrait mobile: pull way back and raise FOV so globe fits above the drawer
+    if (aspect < 0.6) {
+      cam.position.set(0, 0.4, 7.8);
+      cam.fov = 58;
+    } else if (aspect < 0.75) {
+      cam.position.set(0, 0.2, 7.0);
+      cam.fov = 52;
+    } else if (aspect < 1) {
+      cam.position.set(0, 0, 5.8);
+      cam.fov = 47;
+    } else {
+      cam.position.set(0, 0, 5.2);
+      cam.fov = 45;
+    }
     cam.updateProjectionMatrix();
   }, [size.width, size.height, camera]);
   return null;
@@ -127,15 +140,16 @@ function ResponsiveCamera() {
 interface Globe3DProps {
   countries: Country[];
   onCountryClick: (countryId: string) => void;
+  drawerOpen: boolean;
 }
 
-export default function Globe3D({ countries, onCountryClick }: Globe3DProps) {
+export default function Globe3D({ countries, onCountryClick, drawerOpen }: Globe3DProps) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 5.2], fov: 45 }}
+        camera={{ position: [0, 0.4, 7.8], fov: 58 }}
         gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
         dpr={[1, 1.5]}
         className="border-muted"
@@ -159,6 +173,7 @@ export default function Globe3D({ countries, onCountryClick }: Globe3DProps) {
             name={country.name}
             onClick={() => onCountryClick(country.id)}
             occludeRef={meshRef}
+            drawerOpen={drawerOpen}
           />
         ))}
 
