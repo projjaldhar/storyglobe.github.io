@@ -65,6 +65,35 @@ An interactive 3D globe that lets you explore folk tales, oral traditions, and l
 
 ---
 
+## Outcomes & Analytics
+
+User behaviour is tracked via **Vercel Analytics** — no third-party cookies, no consent banners, fully privacy-friendly.
+
+### Automatically tracked
+- **Page views** across all routes (`/`, `/country/:id`, `/country/:id/story/:storyId/tale/:taleId`)
+- **Unique visitors**, session counts, and return visit rates
+- **Device type** (mobile vs desktop), browser, and OS breakdown
+- **Top referrers** — where visitors are coming from (direct, LinkedIn, social, etc.)
+- **Geographic distribution** — which countries visitors are browsing from
+
+### Custom events
+Two key interaction events are fired using `track()` from `@vercel/analytics`:
+
+| Event | Trigger | Properties |
+|---|---|---|
+| `country_opened` | User taps a country flag on the globe | `country` — name of the country |
+| `story_opened` | User taps a story from the drawer | `story` — story ID, `country` — country name |
+
+These events answer the most important product questions:
+- Which countries are users most curious about?
+- Which stories are being read vs ignored?
+- Is engagement dropping off at the globe, or deeper in the funnel?
+
+### Where to view
+Vercel Dashboard → **Analytics** tab → **Custom Events** for interaction data, **Visitors** for traffic overview.
+
+---
+
 ## Project Structure
 
 ```
