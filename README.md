@@ -17,6 +17,16 @@ An interactive 3D globe that lets you explore folk tales, oral traditions, and l
 
 ---
 
+## User Value
+
+- **Discover the world through stories** — explore oral traditions from 14 countries in one immersive experience, without needing to search or scroll
+- **Learn while you play** — each story carries a moral, an origin, and cultural context that makes learning feel effortless
+- **Track your journey** — the Passport system rewards curiosity, showing which countries you've visited and how many stories you've read
+- **No account needed** — progress is saved locally, so users can jump straight in without signup friction
+- **Mobile-first** — designed to feel native on a phone, making it easy to explore a story anywhere, anytime
+
+---
+
 ## Tech Stack
 
 ### Frontend Framework
